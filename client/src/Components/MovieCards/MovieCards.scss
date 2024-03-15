@@ -5,9 +5,11 @@
     height: max-content;
     padding-left: 100px;
     display: flex;
+    flex-direction: column;
     flex-flow: wrap row;
     gap: 18px;
     margin: 0 auto;
+    position: relative;
 
     @include mobile {
         width: 100%;

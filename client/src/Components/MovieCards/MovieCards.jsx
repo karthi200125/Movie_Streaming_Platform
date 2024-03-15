@@ -1,31 +1,46 @@
 import { useState } from 'react';
-import { MOVIES } from '../../dummy';
 import MovieCard from '../Carousel/MovieCard/MovieCard';
 import './MovieCards.scss';
-import { MoviesData } from '../../MoviesData';
-import { GetMovie } from '../../GetMovie';
+import Button from '../Button/Button';
 
-const MovieCards = () => {
-
+const MovieCards = ({ movies }) => {
+    const [displayedMovies, setDisplayedMovies] = useState(15);
     const [movieCard, setMovieCard] = useState(null);
+
+    const handleShowMore = () => {
+        setDisplayedMovies(prevDisplayedMovies => prevDisplayedMovies + 15);
+    };
 
     return (
         <div className='moivecards'>
-            {MoviesData.map((movie) => {
-                const data = GetMovie({ movieTitle: movie.title })                
-                return (
-                    <div className="carouselmovie" key={movie.id} onMouseEnter={() => setMovieCard(data)}>
-                        <img src={data?.posterImage} alt={data?.title} className='cmimg' />
-                        <div className="carouselmoviecard">
-                            {movieCard && movieCard.title === data.title && (
-                                <MovieCard movie={{ ...movieCard, ...movie }} />
-                            )}
+            {movies?.length > 0 ? (
+                movies.slice(0, displayedMovies).map((movie) => {
+                    return (
+                        <div className="carouselmovie" key={movie?.id} onMouseEnter={() => setMovieCard(movie)}>
+                            <div className={`${movie?.isFree ? "free" : "free sub"}`} >
+                                <span>{movie?.isFree ? "FREE" : "SUB"}</span>
+                            </div>
+                            <img src={movie?.posterImage} alt={movie?.title} className='cmimg' />
+                            <div className="carouselmoviecard">
+                                {movieCard && movieCard?.title === movie?.title && (
+                                    <MovieCard movie={movie} />
+                                )}
+                            </div>
                         </div>
-                    </div>
-                )
-            })}
+                    )
+                })
+            ) : (
+                <div className="noresult">
+                    <h1>"No Movies Found"</h1>
+                </div>
+            )}
+            {movies?.length > displayedMovies && (
+                <div className="showmorebtncon">
+                    <Button onClick={handleShowMore} bg>Show More</Button>
+                </div>
+            )}
         </div>
     )
 }
 
-export default MovieCards
+export default MovieCards;

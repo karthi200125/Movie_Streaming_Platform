@@ -31,11 +31,11 @@ const Carousel = ({ movies, CatTitle }) => {
                     if (!hasSameGenre) {
                         return null;
                     }
-                    
+
                     return (
-                        <div className="carouselmovie" key={movie?.id} onMouseEnter={() => setMovieCard(data)} onClick={() => handleClick(data)}>
-                            <div className="free">
-                                <span>FREE</span>
+                        <div className="carouselmovie" key={movie?.id} onMouseEnter={() => setMovieCard(movie)} onClick={() => handleClick(data)}>
+                            <div className={`${movie?.isFree ? "free" : "free sub"}`} >
+                                <span>{movie?.isFree ? "FREE" : "SUB"}</span>
                             </div>
                             <img src={data?.posterImage} alt={data?.title} className="cmimg" loading='lazy' />
                             <div className="carouselmoviecard">

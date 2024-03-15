@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
 import Info from '../../../Components/Info/Info'
+import { GetMovie } from '../../../GetMovie'
+import { MoviesData } from '../../../MoviesData'
 import { MOVIES } from '../../../dummy'
 import VideoPlayer from '../../Show/VideoPlayer/VideoPlayer'
 import Header from '../Header/Header'
 import './MovieSlide.scss'
+
 
 const MovieSlide = () => {
   const [watch, setWatch] = useState(false)
@@ -12,6 +15,12 @@ const MovieSlide = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [refreshKey, setRefreshKey] = useState(0)
   const [next, setnext] = useState(false)
+
+  const slideMovies = MoviesData.map((movie) => {
+    const data = GetMovie({ movieTitle: movie?.title });
+    return { ...movie, ...data };
+  });
+  
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,10 +39,10 @@ const MovieSlide = () => {
 
   const arrowClick = (direction) => {
     if (direction === 'next') {
-      setCurrentIndex((currentIndex + 1) % MOVIES.length)
+      setCurrentIndex((currentIndex + 1) % slideMovies.length)
       setnext(true)
     } else if (direction === 'prev') {
-      setCurrentIndex((currentIndex - 1 + MOVIES.length) % MOVIES.length)
+      setCurrentIndex((currentIndex - 1 + slideMovies.length) % MOVIES.length)
       setnext(true)
     }
     setRefreshKey(prevKey => prevKey + 1)
@@ -43,28 +52,28 @@ const MovieSlide = () => {
   return (
     <div className='movieslide' key={refreshKey}>
       <Header />
-      {watch && <VideoPlayer onBack={() => setWatch(false)} movie={MOVIES[currentIndex]} />}
+      {watch && <VideoPlayer onBack={() => setWatch(false)} movie={slideMovies[currentIndex]} />}
 
       <div className="mobilemovieinfo">
-        <img src={MOVIES[currentIndex].img} alt="" />
+        <img src={slideMovies[currentIndex]?.posterImage} alt="" />
         <div className="mobshowcontent showmob">
-          <Info onOpen={() => setWatch(true)} movie={MOVIES[currentIndex]} />
+          <Info onOpen={() => setWatch(true)} movie={slideMovies[currentIndex]} />
         </div>
       </div>
 
       <div className="movieinfo">
         {preview ?
           <div className={`imgcon ${next && 'nextimg'}`}>
-            <img src={MOVIES[currentIndex].img} alt="" className='mainimage' />
+            <img src={slideMovies[currentIndex]?.posterImage} alt="" className='mainimage' />
           </div>
           :
           <div className="videocon">
-            <ReactPlayer url={MOVIES[currentIndex]?.tailer} playing={true} width='100vw' height='100vh' style={{ position: 'absolute', top: 0, left: 0 }} muted={true} />
+            <ReactPlayer url={slideMovies[currentIndex]?.MoviePreview} playing={true} width='100vw' height='100vh' style={{ position: 'absolute', top: 0, left: 0 }} muted={true} loop={true} />
           </div>
         }
 
         <div className="showcontent homemoviecontent">
-          <Info onOpen={() => setWatch(true)} movie={MOVIES[currentIndex]} />
+          <Info onOpen={() => setWatch(true)} movie={slideMovies[currentIndex]} />
         </div>
       </div>
 
@@ -73,9 +82,9 @@ const MovieSlide = () => {
           <button id="prev" onClick={() => arrowClick('prev')}>{"<"}</button>
           <button id="next" onClick={() => arrowClick('next')}>{">"}</button>
         </div>
-        {MOVIES.map((movie, index) => (
+        {slideMovies.map((movie, index) => (
           <div className={`item ${currentIndex === index && "activeitem"}`} key={movie.id} onClick={() => handleItemClick(movie)}>
-            <img src={movie.img} alt={movie.name} className='thumbnailimg' />
+            <img src={movie?.posterImage} alt={movie?.title} className='thumbnailimg' />
           </div>
         )).slice(0, 4)}
       </div>

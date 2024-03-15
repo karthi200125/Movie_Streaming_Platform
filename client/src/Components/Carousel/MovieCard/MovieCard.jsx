@@ -5,12 +5,13 @@ import './MovieCard.scss'
 
 const MovieCard = ({ movie }) => {
     const [watch, setWatch] = useState(true)
-    
+
     const handleShowWatch = (e) => {
         e.stopPropagation()
         setWatch(true)
     }
 
+    
     return (
         <Link to={'/show'} state={movie} className='mcard' onClick={(e) => e.stopPropagation()}>
             <img src={movie?.posterImage} alt={movie?.title} className='moviecardimg' />

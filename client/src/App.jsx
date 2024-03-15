@@ -1,19 +1,20 @@
 import React from 'react'
-import './App.scss'
-import Home from './Pages/Home/Home'
-import Sidebar from './Components/Sidebar/Sidebar'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import './App.scss'
+import Sidebar from './Components/Sidebar/Sidebar'
 import Category from './Pages/Category/Category'
-import Show from './Pages/Show/Show'
-import Search from './Pages/Search/Search'
+import Header from './Pages/Home/Header/Header'
+import Home from './Pages/Home/Home'
 import Profile from './Pages/Profile/Profile'
-import Model from './Components/Model/Model'
+import Search from './Pages/Search/Search'
+import Show from './Pages/Show/Show'
 
 const App = () => {
   return (
     <div className="container">
       <BrowserRouter>
-        <Sidebar />        
+        <Sidebar />
+        <Header />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/profile' element={<Profile />} />

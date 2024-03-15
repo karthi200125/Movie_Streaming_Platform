@@ -9,6 +9,7 @@ import { MOVIES } from '../../dummy'
 import Carousel from '../../Components/Carousel/Carousel'
 import Footer from '../../Components/Footer/Footer'
 import { useLocation } from 'react-router-dom'
+import noprofile from '../../Assets/noprofile.png'
 
 const Show = () => {
     const [watch, setWatch] = useState(false)
@@ -25,7 +26,6 @@ const Show = () => {
     const location = useLocation()
     const data = location.state.movie ? location.state.movie : location.state;
 
-    console.log(data?.cast)
 
     return (
         <div className={`showmoviecon`}>
@@ -43,7 +43,7 @@ const Show = () => {
                     </div>
                     :
                     <div className="videocon">
-                        <ReactPlayer url={data?.tailer} playing={true} width='100vw' height='100vh' style={{ position: 'absolute', top: 0, left: 0 }} muted={true} />
+                        <ReactPlayer url={data?.MoviePreview} playing={true} width='100vw' height='100vh' style={{ position: 'absolute', top: 0, left: 0 }} muted={true} loop={true} />
                     </div>
                 }
                 < div className="showcontent">
@@ -55,7 +55,7 @@ const Show = () => {
                         <div className="castscon">
                             {data?.cast?.slice(0, 15).map((cast) => (
                                 <div className="cast" key={cast}>
-                                    <img src={cast?.image} alt="" />
+                                    <img src={cast.image || noprofile} alt="" />
                                     <span>{cast?.name}</span>
                                 </div>
                             ))}

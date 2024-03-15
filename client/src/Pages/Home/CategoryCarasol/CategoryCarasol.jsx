@@ -5,9 +5,9 @@ import './CategoryCarasol.scss'
 const CategoryCarasol = () => {
     return (
         <div className='homecategory'>
-            <Carousel CatTitle="Thriller" movies={MoviesData} />
-            <Carousel CatTitle="Crime" movies={MoviesData} />
             <Carousel CatTitle="Drama" movies={MoviesData} />
+            <Carousel CatTitle="Crime" movies={MoviesData} />
+            <Carousel CatTitle="Thriller" movies={MoviesData} />
         </div>
     )
 }

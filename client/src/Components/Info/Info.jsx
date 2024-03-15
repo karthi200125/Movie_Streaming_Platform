@@ -1,6 +1,5 @@
-import './Info.scss'
 import Button from '../../Components/Button/Button'
-import ave from '../../Assets/avengers.png'
+import './Info.scss'
 
 const Info = ({ onOpen, movie }) => {
 
@@ -11,9 +10,11 @@ const Info = ({ onOpen, movie }) => {
     const hours = Math.floor(movie?.runtime / 60);
     const remainingMinutes = movie?.runtime % 60;
 
+    // console.log(movie)
+    
     return (
         <div className='info'>
-            <img src={ave} alt="" className='movietitleimg' />
+            <img src={movie?.titleImg} alt="" className='movietitleimg' />
             <div className='movieyear'>
                 <p>{movie?.releaseYear}</p>.
                 <p>{`${hours} hr ${remainingMinutes} m`}</p>.
@@ -23,7 +24,7 @@ const Info = ({ onOpen, movie }) => {
                 {movie.overview}
             </div>
             <div className="gemre">
-                {movie?.genre?.map((gen) => (
+                {movie?.genres?.map((gen) => (
                     <div className="genitem" key={gen}>
                         <span>{gen}</span>
                         <p>|</p>
