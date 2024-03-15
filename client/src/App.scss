@@ -6,7 +6,15 @@ body {
 
 :root {
     --btn_blue: linear-gradient(to right, #0956e0, #062c9b);
-    --light-text: 'rgba(255, 255, 255, 0.6)'
+    --light-text: 'rgba(255, 255, 255, 0.6)';
+    --hue: 223;
+    --bg: hsl(var(--hue), 10%, 90%);
+    --fg: hsl(var(--hue), 10%, 10%);
+    font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1280 - 320));
+}
+
+.blue_btn {
+    background: linear-gradient(to right, #0956e0, #062c9b);    
 }
 
 .glass {
@@ -304,5 +312,17 @@ body {
 @mixin large {
     @media screen and (min-width: 1200px) {
         @content;
+    }
+}
+
+.imgskeleton {
+    background: linear-gradient(to right, #16181f, rgba(255, 255, 255, 0.1), #16181f);
+    background-size: 200% 100%;
+    animation: shine 1.5s linear infinite;
+}
+
+@keyframes shine {
+    to {
+        background-position-x: 200%;
     }
 }

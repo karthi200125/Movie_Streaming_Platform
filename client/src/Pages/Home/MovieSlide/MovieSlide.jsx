@@ -7,6 +7,7 @@ import { MOVIES } from '../../../dummy'
 import VideoPlayer from '../../Show/VideoPlayer/VideoPlayer'
 import Header from '../Header/Header'
 import './MovieSlide.scss'
+import Image from '../../../Components/Image/Image'
 
 
 const MovieSlide = () => {
@@ -20,7 +21,7 @@ const MovieSlide = () => {
     const data = GetMovie({ movieTitle: movie?.title });
     return { ...movie, ...data };
   });
-  
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -63,7 +64,7 @@ const MovieSlide = () => {
 
       <div className="movieinfo">
         {preview ?
-          <div className={`imgcon ${next && 'nextimg'}`}>
+          <div className={`imgcon ${next && 'nextimg'}`}>            
             <img src={slideMovies[currentIndex]?.posterImage} alt="" className='mainimage' />
           </div>
           :
@@ -84,7 +85,7 @@ const MovieSlide = () => {
         </div>
         {slideMovies.map((movie, index) => (
           <div className={`item ${currentIndex === index && "activeitem"}`} key={movie.id} onClick={() => handleItemClick(movie)}>
-            <img src={movie?.posterImage} alt={movie?.title} className='thumbnailimg' />
+            <Image src={movie?.posterImage} alt={movie?.title} cs="thumbnailimg" w={'100%'} h={'100%'} br={'20px'} />
           </div>
         )).slice(0, 4)}
       </div>

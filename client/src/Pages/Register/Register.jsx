@@ -1,11 +1,13 @@
 import './Register.scss'
 import Button from '../../Components/Button/Button'
+import Image from '../../Components/Image/Image'
+import loginimg from '../../Assets/login.jpg'
 
 const Register = () => {
     return (
         <div className='register'>
-            <div className="regleftcon">
-                <img src="" alt="" />
+            <div className="regleftcon rs">
+                <Image src={loginimg} alt={"login image"} cs="logimg" w={'100%'} h={'100%'} br={'10px'} />
             </div>
             <div className="regright">
                 <h1>Register</h1>
@@ -15,7 +17,7 @@ const Register = () => {
                 <input type="password" placeholder='Password' className='regloginput' />
                 <div className="showpass">
                     <input type="checkbox" />
-                    <span>Show Password</span>
+                    <span className='showpasstext'>Show Password</span>
                 </div>
                 <Button isloading={true} bg>Register</Button>
                 <p className='already'>Alreay Have An Accounr <span>Login</span></p>

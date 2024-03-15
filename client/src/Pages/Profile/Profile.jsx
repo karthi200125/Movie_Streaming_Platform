@@ -11,7 +11,7 @@ const Profile = () => {
     return (
         <div className='profilecon'>            
             <div className="protop">
-                <Button bg>Upgrade Subscription</Button>
+                <Button bg="linear-gradient(to right, #f3e96f, #947303, #ceb349)">Upgrade Subscription</Button>
             </div>
             <div className="proinfo">
                 <div className="pileft">

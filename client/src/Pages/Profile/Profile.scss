@@ -1,7 +1,7 @@
 @import '../../App.scss';
 
 .profilecon {
-    width: 95%;
+    width: 98%;
     min-height: 100vh;
     padding-left: 100px;
     display: flex;
@@ -22,6 +22,7 @@
         justify-content: end;
         padding: 20px 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 50px;
     }
 
     .proinfo {

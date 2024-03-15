@@ -5,6 +5,7 @@ import './Carousel.scss';
 import MovieCard from './MovieCard/MovieCard';
 import { Link, useNavigate } from 'react-router-dom';
 import { GetMovie } from '../../GetMovie';
+import Image from '../../Components/Image/Image'
 
 const Carousel = ({ movies, CatTitle }) => {
     const [movieCard, setMovieCard] = useState(null);
@@ -37,7 +38,7 @@ const Carousel = ({ movies, CatTitle }) => {
                             <div className={`${movie?.isFree ? "free" : "free sub"}`} >
                                 <span>{movie?.isFree ? "FREE" : "SUB"}</span>
                             </div>
-                            <img src={data?.posterImage} alt={data?.title} className="cmimg" loading='lazy' />
+                            <Image src={data?.posterImage} alt={data?.title} cs="cmimg" w={'180px'} h={'230px'} br={'5px'} />
                             <div className="carouselmoviecard">
                                 {movieCard && movieCard.name === movie.name && (
                                     <MovieCard movie={{ ...movieCard, ...data }} />

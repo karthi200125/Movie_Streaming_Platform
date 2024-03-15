@@ -11,7 +11,7 @@ const Info = ({ onOpen, movie }) => {
     const remainingMinutes = movie?.runtime % 60;
 
     // console.log(movie)
-    
+
     return (
         <div className='info'>
             <img src={movie?.titleImg} alt="" className='movietitleimg' />
@@ -32,7 +32,7 @@ const Info = ({ onOpen, movie }) => {
                 ))}
             </div>
             <div className="btns">
-                <Button w bg='white' clr='black' onClick={vidoeplayerOpen}>Watch Now</Button>
+                <Button w bg={movie?.isFree ? 'white' : "linear-gradient(to right, #f3e96f, #947303, #ceb349)"} clr={movie?.isFree ? "black" : "white"} onClick={vidoeplayerOpen}>{movie?.isFree ? "Watch Now" : "Subscribe & watch"}</Button>
                 <Button bg="rgba(255, 255, 255, 0.2)" pad='15px 20px'>+</Button>
             </div>
         </div>

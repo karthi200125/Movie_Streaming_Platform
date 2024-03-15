@@ -10,6 +10,7 @@ import Carousel from '../../Components/Carousel/Carousel'
 import Footer from '../../Components/Footer/Footer'
 import { useLocation } from 'react-router-dom'
 import noprofile from '../../Assets/noprofile.png'
+import Image from '../../Components/Image/Image'
 
 const Show = () => {
     const [watch, setWatch] = useState(false)
@@ -55,7 +56,7 @@ const Show = () => {
                         <div className="castscon">
                             {data?.cast?.slice(0, 15).map((cast) => (
                                 <div className="cast" key={cast}>
-                                    <img src={cast.image || noprofile} alt="" />
+                                    <Image src={cast.image} alt={cast?.name} w={'100px'} h={'100px'} br={'50%'} />                                    
                                     <span>{cast?.name}</span>
                                 </div>
                             ))}
