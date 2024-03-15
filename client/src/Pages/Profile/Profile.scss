@@ -1,0 +1,87 @@
+@import '../../App.scss';
+
+.profilecon {
+    width: 95%;
+    min-height: 100vh;
+    padding-left: 100px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    gap: 20px;
+
+    @include mobile {
+        padding: 10px;
+        height: 180vh;
+        overflow: hidden;
+    }
+
+    .protop {
+        height: max-content;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .proinfo {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .pileft {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 20px;
+
+            .profileimg {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                object-fit: cover;
+
+                @include mobile {
+                    width: 60px;
+                    height: 60px;
+                }
+            }
+
+            h1 {
+                font-weight: 700;
+
+                @include mobile {
+                    font-size: 15px;
+                }
+            }
+
+            p {
+                font-size: 15px;
+                color: rgba(255, 255, 255, 0.5);
+                margin-top: 10px;
+            }
+        }
+
+        .piright {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.5);
+
+            @include mobile {
+                font-size: 15px;
+            }
+
+            &:hover {
+                color: white;
+            }
+        }
+    }
+
+
+}

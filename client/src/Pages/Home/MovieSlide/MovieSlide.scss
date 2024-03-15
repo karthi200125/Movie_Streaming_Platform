@@ -1,0 +1,104 @@
+@import '../../../App.scss';
+
+.movieslide {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+    .thumbnail {
+        width: max-content;
+        position: absolute;
+        bottom: 50px;
+        left: 60%;
+        display: flex;
+        gap: 20px;
+        
+
+        @include mobile {
+            display: none;
+        }
+
+        .item {
+            width: 100px;
+            height: 150px;
+            flex-shrink: 0;
+            position: relative;
+            transition: 0.3s ease-in-out;
+            filter: brightness(0.3);
+            cursor: pointer;
+            border-radius: 20px;
+
+            &:hover {
+                transform: scale(1.1);
+                filter: brightness(1);
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 20px;
+            }
+        }
+
+        .activeitem {
+            transform: scale(1.1);
+            filter: brightness(1);
+            border: 1px solid white;
+        }
+
+        .arrows {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            right: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            max-width: 30%;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            button {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #eee4;
+                border: none;
+                color: #fff;
+                font-family: monospace;
+                font-weight: bold;
+                transition: .5s;
+
+                &:hover {
+                    background-color: #fff;
+                    color: #000;
+                }
+            }
+        }
+    }
+
+}
+
+.nextimg {
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    border-radius: 30px;
+    transition: 0.5s ease-in-out;
+    animation: showImage .5s linear 1 forwards;
+    transform: scale(0);
+}
+
+@keyframes showImage {
+    to {
+        transform: scale(1);
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
+}

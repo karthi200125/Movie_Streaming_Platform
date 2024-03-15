@@ -1,0 +1,12 @@
+@import '../../../App.scss';
+
+.homecategory {
+    width: 100%;
+    height: max-content;
+    padding-left: 100px;
+    margin-top: 20px;
+
+    @include mobile {
+        padding-left: 10px;
+    }
+}

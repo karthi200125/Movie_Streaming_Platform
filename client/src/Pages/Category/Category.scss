@@ -1,0 +1,82 @@
+@import '../../App.scss';
+
+.category {
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @include mobile {
+        overflow-x: hidden;
+    }
+
+    .categorytitle {
+        font-size: 30px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 20px;
+        margin-left: 100px;
+
+        @include mobile {
+            font-size: 20px;
+            margin-left: 10px;
+        }
+    }
+
+    .categoriesbtns {
+        margin-left: 100px;
+        width: max-content;
+        padding: 10px 0;
+        height: max-content;
+        display: flex;
+        align-items: center;
+        flex-direction: row;        
+        gap: 10px;
+
+        @include mobile {
+            margin: 0;
+            padding: 10px;
+            overflow-x: scroll !important;
+            gap: 5px;            
+        }
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        button {
+            padding: 15px 20px;
+            width: max-content;
+            background-color: #16181f;
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: capitalize;
+
+            @include mobile {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+        }
+
+        .activebtn {
+            color: black;
+            background-color: white;
+        }
+    }
+
+    .catline {
+        width: 100%;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin-left: 100px;
+        margin-bottom: 20px;
+
+        @include mobile {
+            margin-left: 0;
+        }
+    }
+}

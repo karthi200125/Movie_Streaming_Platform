@@ -1,0 +1,108 @@
+@import '../../App.scss';
+
+.info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // font-weight: 700;
+    font-size: 20px;
+    box-sizing: border-box;
+    text-shadow: 0 5px 10px #0004;
+
+    @include mobile {
+        font-size: 18px;
+    }
+
+    .movietitleimg {
+        max-width: 300px;
+        max-height: 100px;
+        object-fit: contain;
+    }
+
+    .movieyear {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .moviedesc {
+        color: rgba(255, 255, 255, 0.6);
+        height: max-content;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+    }
+
+
+
+    .gemre {
+        text-transform: capitalize;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+
+        .genitem {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+
+            p {
+                color: rgba(255, 255, 255, 0.5);
+            }
+        }
+    }
+
+    .btns {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 20px;
+    }
+}
+
+
+.movietitleimg,
+.movieyear,
+.moviedesc,
+.gemre,
+.btns {
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s 1s linear 1 forwards;
+}
+
+@keyframes showContent {
+    to {
+        transform: translateY(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+.movietitleimg {
+    animation-delay: 1.2s !important;
+}
+
+.movieyear {
+    animation-delay: 1.4s !important;
+}
+
+.moviedesc {
+    animation-delay: 1.6s !important;
+}
+
+.gemre {
+    animation-delay: 1.8s !important;
+}
+
+.btns {
+    animation-delay: 2s !important;
+}
