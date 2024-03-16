@@ -33,8 +33,8 @@ const Footer = () => {
       </div>
       <div className="btm">
         <div className="left">
-          <p>2024 All Rights reserved</p>
-          <p>Terms of Use FAQ privacy policy</p>
+          <p className='footerreserve'>2024 All Rights reserved</p>
+          <p className='footerreserve'>Terms of Use FAQ privacy policy</p>
         </div>
         <div className="right">
           <img src={apple} alt="" />

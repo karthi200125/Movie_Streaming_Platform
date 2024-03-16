@@ -20,7 +20,7 @@ const Image = ({ src, w, h, br, alt, cs }) => {
                 </div>
             )}
             {imageLoading && (
-                <img src={src} className={`${cs}`} alt={alt} style={{ width: `${w}`, height: `${h}`, borderRadius: `${br}` }} loading='lazy' />
+                <img src={src} className={`${cs}`} alt={alt} style={{ width: `${w}`, height: `${h}`, borderRadius: `${br}`, objectFit: "cover" }} loading='lazy' />
             )}
         </>
     );

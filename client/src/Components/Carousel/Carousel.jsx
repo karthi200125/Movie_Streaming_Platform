@@ -6,16 +6,17 @@ import MovieCard from './MovieCard/MovieCard';
 import { Link, useNavigate } from 'react-router-dom';
 import { GetMovie } from '../../GetMovie';
 import Image from '../../Components/Image/Image'
+import { useSelector } from 'react-redux';
 
 const Carousel = ({ movies, CatTitle }) => {
     const [movieCard, setMovieCard] = useState(null);
+
+    const user = useSelector((state) => state.user.user)
 
     const navigate = useNavigate()
     const handleClick = (movie) => {
         navigate('/show', { state: { movie } })
     }
-
-    const isSub = false
 
     return (
         <div className='carouselcon'>
@@ -37,8 +38,8 @@ const Carousel = ({ movies, CatTitle }) => {
 
                     return (
                         <div className="carouselmovie" key={movie?.id} onMouseEnter={() => setMovieCard(movie)} onClick={() => handleClick(data)}>
-                            <div className={`${isSub ? "free" : movie?.isFree ? "free" : "free sub"}`} >
-                                <span>{isSub ? "FREE" : movie?.isFree ? "FREE" : "SUB"}</span>
+                            <div className={`${user?.isSub ? "free" : movie?.isFree ? "free" : "free sub"}`} >
+                                <span>{user?.isSub ? "FREE" : movie?.isFree ? "FREE" : "SUB"}</span>
                             </div>
                             <Image src={data?.posterImage} alt={data?.title} cs="cmimg" w={'180px'} h={'230px'} br={'5px'} />
                             <div className="carouselmoviecard">

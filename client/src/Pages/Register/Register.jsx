@@ -1,16 +1,11 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import loginimg from '../../Assets/login.jpg';
 import Button from '../../Components/Button/Button';
 import Image from '../../Components/Image/Image';
 import './Register.scss';
-import { AxiosRequest } from '../../Utils/Axiosrequest';
-import axios from 'axios';
-import { useSelector } from 'react-redux'
-import Model from '../../Components/Model/Model';
 
-const Register = () => {
-    const model = useSelector((state) => state.model)
-    console.log(model)
+const Register = ({ onRegClose, onLogOpen }) => {    
     const [isLoading, setIsLoading] = useState(false);
     const [usernameError, setUsernameError] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -49,6 +44,9 @@ const Register = () => {
             try {
                 setIsLoading(true);
                 const res = await axios.post('http://localhost:8800/api/auth/register', { inputs })
+                onRegClose(true)
+                onLogOpen(true)
+                console.log(res.data)
             } catch (error) {
                 console.log(error);
             } finally {
@@ -57,9 +55,11 @@ const Register = () => {
         }
     };
 
-    const Loginmodelopen = () => {
-        <Model onClose={true}/>
+    const loginmodelopen = () => {
+        onRegClose(true)
+        onLogOpen(true)
     }
+
 
     return (
         <div className='register'>
@@ -80,7 +80,7 @@ const Register = () => {
                     <span className="showpasstext">Show Password</span>
                 </div>
                 <Button isloading={isLoading} bg onClick={handleRegister}>Register</Button>
-                <p className="already" onClick={Loginmodelopen}>Already Have An Account? <span>Login</span></p>
+                <p className="already" onClick={loginmodelopen}>Already Have An Account? <span>Login</span></p>
             </div>
         </div>
     );

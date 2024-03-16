@@ -18,7 +18,7 @@ export const Register = async (req, res, next) => {
 
 export const Login = async (req, res, next) => {
     try {
-        const { email, password } = req.body;
+        const { email, password } = req.body.inputs;
         const user = await UserModel.findOne({ email });
         if (!user) return res.status(404).json("Wrong email");
         const checkPassword = await bcrypt.compare(password, user.password);
@@ -32,8 +32,10 @@ export const Login = async (req, res, next) => {
 
 export const userUpdate = async (req, res, next) => {
     try {
-        const { userId } = req.params;
-        const updateuser = await UserModel.findByIdAndUpdate(userId, req.body, { new: true });
+        const profilePic = 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=600'
+        const { email, username, phone } = req.body.inputs;
+        const { userId } = req.params
+        const updateuser = await UserModel.findByIdAndUpdate(userId, { username, email, profilePic }, { new: true });
         res.status(200).json(updateuser);
     } catch (error) {
         console.error(error);

@@ -3,6 +3,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useState } from 'react';
 
 const Model = ({ onOpen, onClose, bodycontent }) => {
+
     const [isOpen, setIsOpen] = useState(onOpen);
 
     const handleClose = () => {
