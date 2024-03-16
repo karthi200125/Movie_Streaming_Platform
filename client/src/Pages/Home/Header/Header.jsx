@@ -5,6 +5,8 @@ import Login from '../../Login/Login';
 import Register from '../../Register/Register';
 import './Header.scss';
 import { useSelector } from 'react-redux';
+import logo from '../../../Assets/logo.png'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     const [regOpen, setRegOpen] = useState(false);
@@ -21,9 +23,11 @@ const Header = () => {
 
     return (
         <div className='headerlog'>
-            <div className="logo">
-                logo
-            </div>
+            <Link to={'/'} className="logo">
+                <img src={logo} alt="" className='logoimg' />
+                {user?.isSub && <h1 className='premium'>Pro</h1>}
+                {/* <p className='logotext'>StarMa</p> */}
+            </Link>
             {!user &&
                 <div className="ri">
                     <Model onOpen={regOpen} onClose={() => setRegOpen(false)}

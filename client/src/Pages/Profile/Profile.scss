@@ -68,12 +68,19 @@
         .piright {
             display: flex;
             align-items: center;
-            flex-direction: row;
+            flex-direction: column;
             gap: 10px;
             font-size: 20px;
             font-weight: 700;
             cursor: pointer;
             color: rgba(255, 255, 255, 0.5);
+
+            .ed {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex-direction: row;
+            }
 
             @include mobile {
                 font-size: 15px;

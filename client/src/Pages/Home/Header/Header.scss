@@ -16,6 +16,43 @@
         padding: 20px;
     }
 
+    .logo {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 5px;
+        position: relative;
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+        margin-left: 10px;
+
+        &:hover {
+            opacity: 0.5;
+        }
+
+        .logoimg {
+            height: 60px;
+            width: 60px;
+            object-fit: contain;
+        }
+
+        .premium {
+            width: 50px;
+            padding: 1px 0;
+            text-align: center;
+            background: linear-gradient(to right, #f3e96f, #947303, #ceb349);
+            border-radius: 25px;
+            font-size: 10px;
+        }
+
+        .logotext {
+            position: absolute;
+            right: -100px;
+            top: 20px;            
+        }
+    }
+
     .ri {
         display: flex;
         flex-direction: row;

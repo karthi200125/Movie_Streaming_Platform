@@ -9,7 +9,7 @@ import './Profile.scss';
 import Model from "../../Components/Model/Model";
 import { useState } from "react";
 import axios from "axios";
-import { login } from "../../Redux/AuthSlice";
+import { login, logout } from "../../Redux/AuthSlice";
 
 const Profile = () => {
 
@@ -69,6 +69,10 @@ const Profile = () => {
         </div>
     )
 
+    const handleLogout = () => {
+        dispatch(logout())
+    }
+
     return (
         <>
             {user ?
@@ -88,8 +92,11 @@ const Profile = () => {
                             </div>
                         </div>
                         <div className="piright" onClick={handleEditOpen}>
-                            <FiEdit2 size={20} />
-                            <span>Edit</span>
+                            <div className="ed">
+                                <FiEdit2 size={20} />
+                                <span>Edit</span>
+                            </div>
+                            <Button onClick={handleLogout}>Logout</Button>
                         </div>
 
                     </div>
