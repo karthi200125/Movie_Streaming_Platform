@@ -15,6 +15,8 @@ const Carousel = ({ movies, CatTitle }) => {
         navigate('/show', { state: { movie } })
     }
 
+    const isSub = false
+
     return (
         <div className='carouselcon'>
             <div className="cartop">
@@ -35,8 +37,8 @@ const Carousel = ({ movies, CatTitle }) => {
 
                     return (
                         <div className="carouselmovie" key={movie?.id} onMouseEnter={() => setMovieCard(movie)} onClick={() => handleClick(data)}>
-                            <div className={`${movie?.isFree ? "free" : "free sub"}`} >
-                                <span>{movie?.isFree ? "FREE" : "SUB"}</span>
+                            <div className={`${isSub ? "free" : movie?.isFree ? "free" : "free sub"}`} >
+                                <span>{isSub ? "FREE" : movie?.isFree ? "FREE" : "SUB"}</span>
                             </div>
                             <Image src={data?.posterImage} alt={data?.title} cs="cmimg" w={'180px'} h={'230px'} br={'5px'} />
                             <div className="carouselmoviecard">

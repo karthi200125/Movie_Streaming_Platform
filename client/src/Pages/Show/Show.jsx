@@ -15,6 +15,11 @@ import Image from '../../Components/Image/Image'
 const Show = () => {
     const [watch, setWatch] = useState(false)
     const [preview, setPreview] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)
+
+    setTimeout(() => {
+        setIsLoading(false)
+    }, 2000)
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -34,7 +39,7 @@ const Show = () => {
             <div className="mobilemovieinfo">
                 <img src={data?.posterImage} alt="" />
                 <div className="mobshowcontent">
-                    <Info onOpen={() => setWatch(true)} movie={data} />
+                    <Info onOpen={() => setWatch(true)} movie={data} isLoading={isLoading} />
                 </div>
             </div>
             <div className="movieinfo">
@@ -48,7 +53,7 @@ const Show = () => {
                     </div>
                 }
                 < div className="showcontent">
-                    <Info onOpen={() => setWatch(true)} movie={data} />
+                    <Info onOpen={() => setWatch(true)} movie={data} isLoading={isLoading} />
                 </div>
                 <div className="showbottom">
                     <div className="casts">
@@ -56,7 +61,7 @@ const Show = () => {
                         <div className="castscon">
                             {data?.cast?.slice(0, 15).map((cast) => (
                                 <div className="cast" key={cast}>
-                                    <Image src={cast.image} alt={cast?.name} w={'100px'} h={'100px'} br={'50%'} />                                    
+                                    <Image src={cast.image} alt={cast?.name} w={'100px'} h={'100px'} br={'50%'} />
                                     <span>{cast?.name}</span>
                                 </div>
                             ))}

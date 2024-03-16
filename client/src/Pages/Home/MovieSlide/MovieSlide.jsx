@@ -9,13 +9,17 @@ import Header from '../Header/Header'
 import './MovieSlide.scss'
 import Image from '../../../Components/Image/Image'
 
-
 const MovieSlide = () => {
   const [watch, setWatch] = useState(false)
   const [preview, setPreview] = useState(true)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [refreshKey, setRefreshKey] = useState(0)
   const [next, setnext] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+
+  setTimeout(() => {
+    setIsLoading(false)
+  }, 2000)
 
   const slideMovies = MoviesData.map((movie) => {
     const data = GetMovie({ movieTitle: movie?.title });
@@ -25,7 +29,11 @@ const MovieSlide = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setPreview(false);
+      if (slideMovies[currentIndex]?.MoviePreview) {
+        setPreview(false);
+      } else {
+        setPreview(true);
+      }
     }, 5000);
 
     return () => clearTimeout(timer);
@@ -50,10 +58,17 @@ const MovieSlide = () => {
     setPreview(true)
   }
 
+  const isSub = false
+
   return (
     <div className='movieslide' key={refreshKey}>
       <Header />
-      {watch && <VideoPlayer onBack={() => setWatch(false)} movie={slideMovies[currentIndex]} />}
+
+      {isSub ?
+        watch && <VideoPlayer onBack={() => setWatch(false)} movie={slideMovies[currentIndex]} />
+        :
+        ""
+      }
 
       <div className="mobilemovieinfo">
         <img src={slideMovies[currentIndex]?.posterImage} alt="" />
@@ -64,8 +79,8 @@ const MovieSlide = () => {
 
       <div className="movieinfo">
         {preview ?
-          <div className={`imgcon ${next && 'nextimg'}`}>            
-            <img src={slideMovies[currentIndex]?.posterImage} alt="" className='mainimage' />
+          <div className={`imgcon ${next && 'nextimg'}`}>
+            <img src={slideMovies[currentIndex]?.MovieImg ? slideMovies[currentIndex]?.MovieImg : slideMovies[currentIndex]?.posterImage} alt="" className='mainimage' />
           </div>
           :
           <div className="videocon">
@@ -74,7 +89,7 @@ const MovieSlide = () => {
         }
 
         <div className="showcontent homemoviecontent">
-          <Info onOpen={() => setWatch(true)} movie={slideMovies[currentIndex]} />
+          <Info onOpen={() => setWatch(true)} movie={slideMovies[currentIndex]} isLoading={isLoading} />
         </div>
       </div>
 

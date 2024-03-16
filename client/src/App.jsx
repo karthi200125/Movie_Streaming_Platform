@@ -9,8 +9,12 @@ const Home = lazy(() => import('./Pages/Home/Home'));
 const Profile = lazy(() => import('./Pages/Profile/Profile'));
 const Search = lazy(() => import('./Pages/Search/Search'));
 const Show = lazy(() => import('./Pages/Show/Show'));
+import { useSelector } from 'react-redux'
 
 const App = () => {
+
+  const user = useSelector((state) => state.user)
+  
   return (
     <div className="container">
       <BrowserRouter>

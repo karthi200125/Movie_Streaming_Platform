@@ -15,7 +15,9 @@ const Image = ({ src, w, h, br, alt, cs }) => {
     return (
         <>
             {!imageLoading && (
-                <div className="imgskeleton" style={{ width: `${w}`, height: `${h}`, borderRadius: `${br}` }}></div>
+                <div className="imgskeleton" style={{ width: `${w}`, height: `${h}`, borderRadius: `${br}` }}>
+                    <span className='imgskeletontitle'>{alt}</span>
+                </div>
             )}
             {imageLoading && (
                 <img src={src} className={`${cs}`} alt={alt} style={{ width: `${w}`, height: `${h}`, borderRadius: `${br}` }} loading='lazy' />

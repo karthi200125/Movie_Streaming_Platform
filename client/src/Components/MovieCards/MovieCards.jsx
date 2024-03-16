@@ -12,14 +12,16 @@ const MovieCards = ({ movies }) => {
         setDisplayedMovies(prevDisplayedMovies => prevDisplayedMovies + 15);
     };
 
+    const isSub = false
+
     return (
         <div className='moivecards'>
             {movies?.length > 0 ? (
                 movies.slice(0, displayedMovies).map((movie) => {
                     return (
                         <div className="carouselmovie" key={movie?.id} onMouseEnter={() => setMovieCard(movie)}>
-                            <div className={`${movie?.isFree ? "free" : "free sub"}`} >
-                                <span>{movie?.isFree ? "FREE" : "SUB"}</span>
+                            <div className={`${isSub ? "free" : movie?.isFree ? "free" : "free sub"}`} >
+                                <span>{isSub ? "FREE" : movie?.isFree ? "FREE" : "SUB"}</span>
                             </div>
                             <Image src={movie?.posterImage} alt={movie?.title} cs="cmimg" w={'180px'} h={'230px'} br={'5px'} />
                             <div className="carouselmoviecard">

@@ -52,7 +52,7 @@
             cursor: pointer;
 
             &:hover {
-                color: white;                
+                color: white;
                 transition: 0.2s ease-in-out;
 
                 .routeicon {
@@ -101,4 +101,30 @@
     100% {
         opacity: 1;
     }
+}
+
+
+.prouser {
+    // position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .pro {        
+        font-size: 10px;
+        padding: 0px 5px;
+        background: linear-gradient(to right, #f3e96f, #947303, #ceb349);
+        bottom: -8px;
+        border-radius: 5px;
+        color: white;
+        z-index: 2;
+    }
+}
+
+.usericon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
 }

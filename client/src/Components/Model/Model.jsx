@@ -9,7 +9,7 @@ const Model = ({ onOpen, onClose, bodycontent }) => {
         setIsOpen(false);
         onClose();
     }
-    
+
     return (
         <>
             {onOpen &&

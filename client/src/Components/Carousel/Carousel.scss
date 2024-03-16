@@ -4,7 +4,7 @@
     width: 95%;
     height: 300px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
 
     @include mobile {
         width: 100%;
@@ -53,6 +53,7 @@
         flex-direction: row;
         align-items: center;
         gap: 10px;
+        // overflow-x: scroll;        
 
         @include mobile {
             width: 100%;

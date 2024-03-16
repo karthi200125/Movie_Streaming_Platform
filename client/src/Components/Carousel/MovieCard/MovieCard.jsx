@@ -11,13 +11,14 @@ const MovieCard = ({ movie }) => {
         setWatch(true)
     }
 
+    const isSub = false
 
     return (
         <Link to={'/show'} state={movie} className='mcard' onClick={(e) => e.stopPropagation()}>
             <img src={movie?.posterImage} alt={movie?.title} className='moviecardimg' />
             <div className="mcontent">
                 <div className="top">
-                    <Button w bg={movie?.isFree ? 'white' : 'linear-gradient(to right, #f3e96f, #947303, #ceb349)'} clr={movie?.isFree ? "black" : "white"} onClick={handleShowWatch}>{movie?.isFree ? "Watch Now" : "Subscribe & watch"}</Button>
+                    <Button w bg={isSub ? "white" : movie?.isFree ? 'white' : 'linear-gradient(to right, #f3e96f, #947303, #ceb349)'} clr={isSub ? "black" : movie?.isFree ? "black" : "white"} >{isSub ? "Watch" : movie?.isFree ? "Watch Now" : "Subscribe & watch"}</Button>
                     <Button bg='#282a31' pad='15px 20px'>+</Button>
                 </div>
                 <div className="btm">

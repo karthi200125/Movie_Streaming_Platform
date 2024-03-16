@@ -32,7 +32,7 @@ export const GetMovie = ({ movieTitle }) => {
                     runtime: movieDetails.runtime 
                 });
             } catch (error) {
-                console.log(error);
+                // console.log(error);
             }
         };
         getData();
