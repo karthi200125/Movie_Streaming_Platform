@@ -39,7 +39,7 @@ const Show = () => {
         const movieGenres = movie?.genres?.map(genre => genre?.toLowerCase())
         return genres?.some(genre => movieGenres?.includes(genre))
     })
-
+    
     return (
         <div className={`showmoviecon`}>
             {watch && <VideoPlayer onBack={() => setWatch(false)} movie={data} />}

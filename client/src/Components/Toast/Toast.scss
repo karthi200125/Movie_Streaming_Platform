@@ -1,0 +1,29 @@
+.toast {
+    width: 100%;
+    height: 100%;
+    // background-color: #16181f;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 35px;
+
+    .toasticoncon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(to right, #0956e0, #062c9b);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .toasticon {
+            color: white;
+            font-size: 20px;
+        }
+    }
+
+    .toasttext {
+        font-size: 20px;
+        text-transform: capitalize;
+    }
+}

@@ -10,6 +10,8 @@ import Model from "../../Components/Model/Model";
 import { MoviesData } from "../../MoviesData";
 import { login, logout } from "../../Redux/AuthSlice";
 import './Profile.scss';
+import { toast } from "sonner";
+import Toast from "../../Components/Toast/Toast";
 
 const Profile = () => {
 
@@ -36,8 +38,10 @@ const Profile = () => {
             setisLoading(true)
             const res = await axios.put(`http://localhost:8800/api/auth/userupdate/${user?._id}`, { inputs })
             console.log(res)
+            toast(<Toast onErr={false} tmsg={"user Has Been updated"} />)
             dispatch(login(res.data))
         } catch (error) {
+            toast(<Toast onErr={true} tmsg={error?.response?.data?.message} />)
             console.log(error)
         } finally {
             setisLoading(false)
@@ -70,10 +74,11 @@ const Profile = () => {
     )
 
     const handleLogout = () => {
+        toast(<Toast onErr={false} tmsg={"logout successfully"} />)
         dispatch(logout())
     }
 
-    const userWatchedIds = user?.watchedMovies;     
+    const userWatchedIds = user?.watchedMovies;
     const watchedMoviesData = MoviesData.filter(movie => userWatchedIds?.includes(movie.id));
 
     return (

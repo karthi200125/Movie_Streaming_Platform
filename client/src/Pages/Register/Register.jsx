@@ -4,6 +4,9 @@ import Button from '../../Components/Button/Button';
 import Image from '../../Components/Image/Image';
 import { AxiosRequest } from '../../Utils/Axiosrequest';
 import './Register.scss';
+import axios from 'axios';
+import Toast from '../../Components/Toast/Toast';
+import { toast } from 'sonner';
 
 const Register = ({ onRegClose, onLogOpen }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -43,12 +46,14 @@ const Register = ({ onRegClose, onLogOpen }) => {
         if (isValid) {
             try {
                 setIsLoading(true);
-                const res = await AxiosRequest.post('/auth/register', { inputs })
+                const res = await axios.post('http://localhost:8800/api/auth/register', { inputs })
                 onRegClose(true)
                 onLogOpen(true)
-                console.log(res.data)
+                toast(<Toast onErr={false} tmsg={"User Registerd successfully"} />)
             } catch (error) {
-                console.log(error);
+                if (error?.response?.data?.message?.password) return setPasswordError(error?.response?.data?.message?.password)
+                if (error?.response?.data?.message?.email) return setEmailError(error?.response?.data?.message?.email)
+                toast(<Toast onErr={true} tmsg={error?.response?.data?.message} />)
             } finally {
                 setIsLoading(false);
             }
