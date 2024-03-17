@@ -25,8 +25,7 @@ const Header = () => {
         <div className='headerlog'>
             <Link to={'/'} className="logo">
                 <img src={logo} alt="" className='logoimg' />
-                {user?.isSub && <h1 className='premium'>Pro</h1>}
-                {/* <p className='logotext'>StarMa</p> */}
+                {user?.isSub && <h1 className='premium'>Pro</h1>}                
             </Link>
             {!user &&
                 <div className="ri">

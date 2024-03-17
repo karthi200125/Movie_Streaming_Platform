@@ -45,7 +45,7 @@ const Show = () => {
             {watch && <VideoPlayer onBack={() => setWatch(false)} movie={data} />}
             <div className="mobilemovieinfo">
                 <img src={data?.posterImage} alt="" />
-                <div className="mobshowcontent">
+                <div className="mobshowcontent mobshow">
                     <Info onOpen={() => setWatch(true)} movie={data} isLoading={isLoading} />
                 </div>
             </div>

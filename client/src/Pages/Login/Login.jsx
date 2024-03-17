@@ -1,14 +1,14 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import loginimg from '../../Assets/login.jpg';
 import Button from '../../Components/Button/Button';
 import Image from '../../Components/Image/Image';
+import Toast from '../../Components/Toast/Toast';
 import { login } from '../../Redux/AuthSlice';
 import './Login.scss';
-import { toast } from 'sonner'
-import Toast from '../../Components/Toast/Toast';
+import AxiosRequest from '../../Utils/Axiosrequest';
 
 const Login = ({ onLogClose, onRegOpen }) => {
     const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const Login = ({ onLogClose, onRegOpen }) => {
         if (isValid) {
             try {
                 setIsLoading(true);
-                const res = await axios.post('http://localhost:8800/api/auth/login', { inputs });
+                const res = await AxiosRequest.post('/auth/login', { inputs });
                 navigate('/');
                 toast(<Toast onErr={false} tmsg={"Login Successfully"} />)
                 dispatch(login(res.data));

@@ -1,5 +1,7 @@
+@import '../../App.scss';
+
 .searchcon {
-    width: 100%;    
+    width: 100%;
     min-height: 100vh;
     padding-top: 100px;
     display: flex;
@@ -9,7 +11,13 @@
     .searchboxcon {
         width: 100%;
         padding-left: 100px;
-        margin-bottom: 50px;        
+        margin-bottom: 50px;
+
+        @include mobile {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 0px;
+        }
 
         .search {
             width: 98%;
@@ -22,6 +30,7 @@
             gap: 20px;
             flex-direction: row;
 
+
             input {
                 width: 100%;
                 padding: 20px;
@@ -30,7 +39,7 @@
                 color: white;
                 font-size: 20px;
 
-                &:focus{
+                &:focus {
                     outline: none;
                 }
             }

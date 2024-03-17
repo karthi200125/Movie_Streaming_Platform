@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../Components/Button/Button';
 import { watchedMovies } from '../../Redux/AuthSlice';
-import { AxiosRequest } from '../../Utils/Axiosrequest';
+import AxiosRequest from '../../Utils/Axiosrequest';
 import Model from '../Model/Model';
 import { InfoSkeleton } from '../Skeletons/Skeletons';
 import Subscription from '../Subscription/Subscription';
 import './Info.scss';
-import axios from 'axios';
 
-const Info = ({ onOpen, movie, isLoading  }) => {
+
+const Info = ({ onOpen, movie, isLoading }) => {
     const user = useSelector((state) => state.user.user)
     const dispatch = useDispatch()
     const vidoeplayerOpen = async () => {
         try {
-            const res = await axios.put('http://localhost:8800/api/auth/watchedmovies', { userId: user?._id, movieId: movie?.id })
+            const res = await AxiosRequest.put('/auth/watchedmovies', { userId: user?._id, movieId: movie?.id })
             console.log(res.data)
             dispatch(watchedMovies(res.data))
             onOpen(true);

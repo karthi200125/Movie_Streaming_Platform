@@ -7,7 +7,7 @@ const Toast = ({ onErr, tmsg }) => {
 
     return (
         <div className='toast'>
-            <span className='toasticoncon' style={{ backgroundColor: onErr ? "red" : "blue" }}>
+            <span className='toasticoncon' style={{ background: onErr ? "red" : "linear-gradient(to right, #0956e0, #062c9b)" }}>
                 {onErr ? <CgDanger className='toasticon' /> : <FaCheck className='toasticon' />}
             </span>
             <h1 className='toasttext' style={{ color: onErr ? "red" : "black" }}>{tmsg}</h1>

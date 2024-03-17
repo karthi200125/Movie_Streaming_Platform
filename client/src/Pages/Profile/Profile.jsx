@@ -12,6 +12,7 @@ import { login, logout } from "../../Redux/AuthSlice";
 import './Profile.scss';
 import { toast } from "sonner";
 import Toast from "../../Components/Toast/Toast";
+import AxiosRequest from "../../Utils/Axiosrequest";
 
 const Profile = () => {
 
@@ -36,7 +37,7 @@ const Profile = () => {
     const handleUpdate = async () => {
         try {
             setisLoading(true)
-            const res = await axios.put(`http://localhost:8800/api/auth/userupdate/${user?._id}`, { inputs })
+            const res = await AxiosRequest.put(`/auth/userupdate/${user?._id}`, { inputs })
             console.log(res)
             toast(<Toast onErr={false} tmsg={"user Has Been updated"} />)
             dispatch(login(res.data))
@@ -65,8 +66,8 @@ const Profile = () => {
                     <input type="text" name="username" value={inputs?.username} id="" className="regloginput" placeholder="chnage your name" onChange={handleChnage} />
                     <label htmlFor="" className="editlabel">Chnage Email</label>
                     <input type="email" name="email" id="" value={inputs?.email} className="regloginput" placeholder="chnage your name" onChange={handleChnage} />
-                    <label htmlFor="" className="editlabel">Chnage Phone</label>
-                    <input type="number" name="phone" id="" value={''} className="regloginput" placeholder="chnage your name" onChange={handleChnage} />
+                    {/* <label htmlFor="" className="editlabel">Chnage Phone</label>
+                    <input type="number" name="phone" id="" value={''} className="regloginput" placeholder="chnage your name" onChange={handleChnage} /> */}
                     <Button isloading={isLoading} onClick={handleUpdate} bg w={'100%'}>{isLoading ? "Please wait..." : "Update"}</Button>
                 </div>
             </div>

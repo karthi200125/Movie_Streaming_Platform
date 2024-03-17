@@ -59,7 +59,7 @@ const MovieSlide = () => {
     setRefreshKey(prevKey => prevKey + 1)
     setPreview(true)
   }
-  
+
   return (
     <div className='movieslide' key={refreshKey}>
       <Header />
@@ -72,6 +72,10 @@ const MovieSlide = () => {
 
       <div className="mobilemovieinfo">
         <img src={slideMovies[currentIndex]?.posterImage} alt="" />
+        <div className="mobarrows">
+          <button id="prev" onClick={() => arrowClick('prev')}>{"<"}</button>
+          <button id="next" onClick={() => arrowClick('next')}>{">"}</button>
+        </div>
         <div className="mobshowcontent showmob">
           <Info onOpen={() => setWatch(true)} movie={slideMovies[currentIndex]} />
         </div>
