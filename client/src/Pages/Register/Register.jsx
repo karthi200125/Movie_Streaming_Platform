@@ -1,11 +1,11 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import loginimg from '../../Assets/login.jpg';
 import Button from '../../Components/Button/Button';
 import Image from '../../Components/Image/Image';
+import { AxiosRequest } from '../../Utils/Axiosrequest';
 import './Register.scss';
 
-const Register = ({ onRegClose, onLogOpen }) => {    
+const Register = ({ onRegClose, onLogOpen }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [usernameError, setUsernameError] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -43,7 +43,7 @@ const Register = ({ onRegClose, onLogOpen }) => {
         if (isValid) {
             try {
                 setIsLoading(true);
-                const res = await axios.post('http://localhost:8800/api/auth/register', { inputs })
+                const res = await AxiosRequest.post('/auth/register', { inputs })
                 onRegClose(true)
                 onLogOpen(true)
                 console.log(res.data)

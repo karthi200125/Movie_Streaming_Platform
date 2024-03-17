@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import './Category.scss';
-import MovieCards from '../../Components/MovieCards/MovieCards';
-import Footer from '../../Components/Footer/Footer';
-import { MoviesData } from '../../MoviesData';
-import { GetMovie } from '../../GetMovie';
 import Button from '../../Components/Button/Button';
+import Footer from '../../Components/Footer/Footer';
+import MovieCards from '../../Components/MovieCards/MovieCards';
+import { GetMovie } from '../../GetMovie';
+import { MoviesData } from '../../MoviesData';
+import './Category.scss';
 
 const Category = () => {
   const genres = ["Drama", "Adventure", "Comedy", "Action", "Fantasy", "Horror", "Mystery", "Romance", "Science Fiction", "Thriller"];

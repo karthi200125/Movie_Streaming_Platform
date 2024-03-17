@@ -10,7 +10,7 @@ export const GetMovie = ({ movieTitle }) => {
             try {
                 // Step 1: Search for the Movie
                 const searchResponse = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(movieTitle)}`);
-                const movieId = searchResponse.data.results[0]?.id; 
+                const movieId = searchResponse.data.results[0]?.id;
 
                 // Step 2: Get Movie Details
                 const movieDetailsResponse = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`);
@@ -19,7 +19,7 @@ export const GetMovie = ({ movieTitle }) => {
                 // Step 3: Get Cast Information
                 const creditsResponse = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`);
                 const cast = creditsResponse.data.cast.map(member => ({ name: member.name, image: `https://image.tmdb.org/t/p/w500${member.profile_path}` }));
-                
+
                 // Store all movie information in state
                 setMovieInfo({
                     title: movieDetails.title,
@@ -28,8 +28,9 @@ export const GetMovie = ({ movieTitle }) => {
                     releaseYear: movieDetails.release_date.split('-')[0],
                     genres: movieDetails.genres.map(genre => genre.name),
                     languages: movieDetails.spoken_languages.map(language => language.name),
-                    cast: cast,                    
-                    runtime: movieDetails.runtime 
+                    cast: cast,
+                    runtime: movieDetails.runtime,
+                    rating: movieDetails.vote_average.toFixed(1)
                 });
             } catch (error) {
                 // console.log(error);

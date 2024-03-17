@@ -1,13 +1,5 @@
 import './Skeletons.scss'
 
-export const SkeletonCard = () => {
-    return (
-        <div className="skeleton-card">
-        </div>
-    );
-};
-
-
 export const InfoSkeleton = () => {
     return (
         <div className='infosk'>

@@ -1,0 +1,52 @@
+.subscriptioncon {
+    width: 800px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+    .subtitle {
+        text-align: center;
+        font-size: 25px;
+        text-transform: capitalize;
+        border-bottom: 1px solid white;
+        padding-bottom: 10px;
+    }
+
+    .subdetails {
+        margin: 10px 0;
+        height: max-content;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        font-weight: 400;
+
+        .features {
+            width: 80%;
+
+            .featurestitle {
+                font-size: 25px;
+                background: linear-gradient(to right, #0956e0, #062c9b);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                font-weight: 700;
+            }
+
+            li{
+                font-size: 18px;
+            }
+
+            .subpre {
+                background: linear-gradient(to right, #f3e96f, #947303, #ceb349);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                font-weight: 700;
+            }
+        }
+
+    }
+}

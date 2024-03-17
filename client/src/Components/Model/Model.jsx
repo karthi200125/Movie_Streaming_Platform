@@ -1,13 +1,9 @@
-import './Model.scss';
 import { AiOutlineClose } from "react-icons/ai";
-import { useState } from 'react';
+import './Model.scss';
 
 const Model = ({ onOpen, onClose, bodycontent }) => {
-
-    const [isOpen, setIsOpen] = useState(onOpen);
-
-    const handleClose = () => {
-        setIsOpen(false);
+    
+    const handleClose = () => {        
         onClose();
     }
 

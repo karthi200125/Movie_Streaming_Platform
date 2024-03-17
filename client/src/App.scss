@@ -52,6 +52,17 @@ body {
         }
     }
 
+    .cardrating {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        background-color: red;
+        font-size: 10px;
+        overflow: hidden;
+        border-radius: 5px;
+        padding: 1px 5px;
+    }
+
     .cmimg {
         width: 180px;
         height: 230px;
@@ -168,7 +179,7 @@ body {
             margin-left: 100px;
             background: linear-gradient(to right, #0f1014, #0f1014d7, rgba(0, 0, 0, 0.01));
             filter: blur(5px);
-            z-index: 1;            
+            z-index: 1;
         }
 
         img {

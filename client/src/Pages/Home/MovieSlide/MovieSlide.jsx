@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
+import { useSelector } from 'react-redux'
+import Image from '../../../Components/Image/Image'
 import Info from '../../../Components/Info/Info'
 import { GetMovie } from '../../../GetMovie'
 import { MoviesData } from '../../../MoviesData'
-import { MOVIES } from '../../../dummy'
 import VideoPlayer from '../../Show/VideoPlayer/VideoPlayer'
 import Header from '../Header/Header'
 import './MovieSlide.scss'
-import Image from '../../../Components/Image/Image'
 
 const MovieSlide = () => {
   const [watch, setWatch] = useState(false)
@@ -16,6 +16,8 @@ const MovieSlide = () => {
   const [refreshKey, setRefreshKey] = useState(0)
   const [next, setnext] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+
+  const user = useSelector((state) => state.user.user)
 
   setTimeout(() => {
     setIsLoading(false)
@@ -51,20 +53,18 @@ const MovieSlide = () => {
       setCurrentIndex((currentIndex + 1) % slideMovies.length)
       setnext(true)
     } else if (direction === 'prev') {
-      setCurrentIndex((currentIndex - 1 + slideMovies.length) % MOVIES.length)
+      setCurrentIndex((currentIndex - 1 + slideMovies.length) % slideMovies.length)
       setnext(true)
     }
     setRefreshKey(prevKey => prevKey + 1)
     setPreview(true)
   }
-
-  const isSub = false
-
+  
   return (
     <div className='movieslide' key={refreshKey}>
       <Header />
 
-      {isSub ?
+      {user?.isSub ?
         watch && <VideoPlayer onBack={() => setWatch(false)} movie={slideMovies[currentIndex]} />
         :
         ""

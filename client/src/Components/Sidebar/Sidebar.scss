@@ -33,8 +33,7 @@
                 top: 0;
                 left: -10px;
                 width: 350px;
-                height: 100vh;
-                // background: linear-gradient(to right, black, #0f1014d7, rgba(0, 0, 0, 0.01));                
+                height: 100vh;                
                 background: linear-gradient(to right, black, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.01));
                 filter: blur(5px);
                 z-index: -1;
@@ -104,8 +103,7 @@
 }
 
 
-.prouser {
-    // position: relative;
+.prouser {    
     display: flex;
     align-items: center;
     justify-content: center;

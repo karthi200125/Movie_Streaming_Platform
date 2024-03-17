@@ -1,15 +1,15 @@
+import axios from "axios";
+import { useState } from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import Button from '../../Components/Button/Button';
 import Carousel from '../../Components/Carousel/Carousel';
 import Footer from '../../Components/Footer/Footer';
 import Image from "../../Components/Image/Image";
-import { MOVIES } from '../../dummy';
-import './Profile.scss';
 import Model from "../../Components/Model/Model";
-import { useState } from "react";
-import axios from "axios";
+import { MoviesData } from "../../MoviesData";
 import { login, logout } from "../../Redux/AuthSlice";
+import './Profile.scss';
 
 const Profile = () => {
 
@@ -73,6 +73,9 @@ const Profile = () => {
         dispatch(logout())
     }
 
+    const userWatchedIds = user?.watchedMovies;     
+    const watchedMoviesData = MoviesData.filter(movie => userWatchedIds?.includes(movie.id));
+
     return (
         <>
             {user ?
@@ -100,7 +103,7 @@ const Profile = () => {
                         </div>
 
                     </div>
-                    <Carousel CatTitle="Watch History" movies={MOVIES} />
+                    <Carousel CatTitle="Watch History" promovies={watchedMoviesData} />
                     <Footer />
                 </div>
                 :

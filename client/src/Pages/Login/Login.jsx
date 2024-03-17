@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import Button from '../../Components/Button/Button'
-import './Login.scss'
-import loginimg from '../../Assets/login.jpg'
-import Image from '../../Components/Image/Image'
-import axios from 'axios'
 import { useDispatch } from 'react-redux'
+import loginimg from '../../Assets/login.jpg'
+import Button from '../../Components/Button/Button'
+import Image from '../../Components/Image/Image'
 import { login } from '../../Redux/AuthSlice'
+import { AxiosRequest } from '../../Utils/Axiosrequest'
+import './Login.scss'
 
 const Login = ({ onLogClose, onRegOpen }) => {
     const dispatch = useDispatch()
@@ -39,9 +39,9 @@ const Login = ({ onLogClose, onRegOpen }) => {
         if (isValid) {
             try {
                 setIsLoading(true);
-                const res = await axios.post('http://localhost:8800/api/auth/login', { inputs })
+                const res = await AxiosRequest.post('/auth/login', { inputs })
                 onLogClose(true)
-                dispatch(login(res.data))                
+                dispatch(login(res.data))
             } catch (error) {
                 console.log(error);
             } finally {

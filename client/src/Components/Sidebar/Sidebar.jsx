@@ -2,9 +2,9 @@ import { BsFillGrid1X2Fill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { GoHomeFill } from "react-icons/go";
 import { LuSearch } from "react-icons/lu";
+import { useSelector } from "react-redux";
 import { Link, useLocation } from 'react-router-dom';
 import './Sidebar.scss';
-import { useSelector } from "react-redux";
 
 const Sidebar = () => {
 
@@ -22,7 +22,6 @@ const Sidebar = () => {
             <CgProfile size={25} className='routeicon' />
           }
           <span className='routename' >Profile</span>
-          {/* {user?.isSub && <div className="pro">Pro</div>} */}
         </Link>
         <Link to={'/search'} className={`route ${pathname === "/search" && "activeroute"}`}>
           <LuSearch size={25} className='routeicon' />

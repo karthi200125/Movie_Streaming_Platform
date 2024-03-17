@@ -16,9 +16,13 @@ const AuthSlice = createSlice({
             localStorage.removeItem('access_token');
             localStorage.removeItem('search');
         },
+        watchedMovies: (state, action) => {
+            state.user.watchedMovies.push(action.payload);
+            localStorage.setItem('user', JSON.stringify(state.user));
+        }
     }
 })
 
-export const { login, logout } = AuthSlice.actions;
+export const { login, logout, watchedMovies } = AuthSlice.actions;
 
 export default AuthSlice.reducer;

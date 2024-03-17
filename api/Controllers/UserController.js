@@ -45,9 +45,9 @@ export const userUpdate = async (req, res, next) => {
 
 export const userWatchedMovies = async (req, res, next) => {
     try {
-        const { userId, movieId } = req.params;
+        const { userId, movieId } = req.body;        
         await UserModel.findByIdAndUpdate(userId, { $push: { watchedMovies: movieId } }, { new: true });
-        res.status(200).json("Movie added to watched list");
+        res.status(200).json(movieId);
     } catch (error) {
         console.error(error);
         res.status(500).json("Adding movie to watched list failed");
