@@ -19,20 +19,20 @@ const Sidebar = () => {
           {user ?
             <img src={user?.profilePic} alt={user?.username} className="usericon" />
             :
-            <CgProfile size={25} className='routeicon' />
+            <CgProfile size={25} className={`routeicon  ${pathname === "/profile" && "activerouteicon"}`} />
           }
           <span className='routename' >Profile</span>
         </Link>
         <Link to={'/search'} className={`route ${pathname === "/search" && "activeroute"}`}>
-          <LuSearch size={25} className='routeicon' />
+          <LuSearch size={25} className={`routeicon  ${pathname === "/search" && "activerouteicon"}`} />
           <span className='routename' >Search</span>
         </Link>
         <Link to={'/'} className={`route ${pathname === "/" && "activeroute"}`}>
-          <GoHomeFill size={25} className='routeicon' />
+          <GoHomeFill size={25} className={`routeicon  ${pathname === "/" && "activerouteicon"}`} />
           <span className='routename' >Home</span>
         </Link>
         <Link to={'/category'} className={`route ${pathname === "/category" && "activeroute"}`}>
-          <BsFillGrid1X2Fill size={20} className='routeicon' />
+          <BsFillGrid1X2Fill size={20} className={`routeicon  ${pathname === "/category" && "activerouteicon"}`} />
           <span className='routename' >Category</span>
         </Link>
       </div>
