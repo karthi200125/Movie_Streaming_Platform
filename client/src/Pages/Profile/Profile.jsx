@@ -1,18 +1,18 @@
-import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
 import Button from '../../Components/Button/Button';
 import Carousel from '../../Components/Carousel/Carousel';
 import Footer from '../../Components/Footer/Footer';
 import Image from "../../Components/Image/Image";
 import Model from "../../Components/Model/Model";
+import Toast from "../../Components/Toast/Toast";
 import { MoviesData } from "../../MoviesData";
 import { login, logout } from "../../Redux/AuthSlice";
-import './Profile.scss';
-import { toast } from "sonner";
-import Toast from "../../Components/Toast/Toast";
 import AxiosRequest from "../../Utils/Axiosrequest";
+import { useUplaod } from "../../Utils/UplaodFile";
+import './Profile.scss';
 
 const Profile = () => {
 
@@ -20,11 +20,16 @@ const Profile = () => {
     const dispatch = useDispatch()
     const [EditOpen, setEditOpen] = useState(false);
     const [isLoading, setisLoading] = useState(false);
+    const [file, setFile] = useState()
     const [inputs, setInputs] = useState({
         username: user?.username || '',
         email: user?.email || "",
-        phone: ""
+        profilePic: user?.profilePic || "",
+        phone: "",
     });
+
+    const { per, UploadFile, donwlaodUrl } = useUplaod({ file })
+    useEffect(() => { file && UploadFile() }, [file])
 
     const handleEditOpen = () => {
         setEditOpen(true);
@@ -37,7 +42,7 @@ const Profile = () => {
     const handleUpdate = async () => {
         try {
             setisLoading(true)
-            const res = await AxiosRequest.put(`/auth/userupdate/${user?._id}`, { inputs })
+            const res = await AxiosRequest.put(`/auth/userupdate/${user?._id}`, { ...inputs, profilePic: donwlaodUrl })
             console.log(res)
             toast(<Toast onErr={false} tmsg={"user Has Been updated"} />)
             dispatch(login(res.data))
@@ -49,17 +54,17 @@ const Profile = () => {
         }
     }
 
-
     const EditBodey = (
         <div className="editcon">
             <h1 >Edit Profile</h1>
             <div className="edit">
                 <div className="leftedit">
                     <Image src={user?.profilePic} alt="" className="editprofileimg" w={'100px'} h={'100px'} br={'50%'} />
-                    <input type="file" name="" id="profileimg" style={{ display: "none" }} />
+                    <input type="file" name="" id="profileimg" style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} />
                     <label htmlFor="profileimg" className="chnageimage glass">
-                        Chnage Image
+                        Change Image
                     </label>
+                    {per && <div className="per">{per}%  {per > 0 ? "completed" : "uploading...."} </div>}
                 </div>
                 <div className="rightedit">
                     <label htmlFor="" className="editlabel"> Chnage User Name</label>
@@ -109,7 +114,9 @@ const Profile = () => {
                         </div>
 
                     </div>
-                    <Carousel CatTitle="Watch History" promovies={watchedMoviesData} />
+                    {user?.watchedMovies?.length > 0 &&
+                        <Carousel CatTitle="Watch History" promovies={watchedMoviesData} />
+                    }
                     <Footer />
                 </div>
                 :

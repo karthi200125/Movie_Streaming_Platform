@@ -16,8 +16,8 @@ const Category = () => {
     return { ...movie, ...data };
   });
 
-  const [genre, setGenre] = useState(genres[0]);
-  const [Language, setLanguage] = useState(Languages[0]);
+  const [genre, setGenre] = useState('');
+  const [Language, setLanguage] = useState('');
   const [Trend, setTrend] = useState(Trends[0]);
 
 
@@ -42,11 +42,13 @@ const Category = () => {
         ))}
       </div>
       <div className="categoriesbtns">
+        <button className={genre === '' && 'activebtn'} onClick={() => setGenre('')}>All</button>
         {genres.map((gen) => (
           <button key={gen} onClick={() => setGenre(gen)} className={genre === gen && "activebtn"}>{gen}</button>
         ))}
       </div>
       <div className="categoriesbtns">
+        <button className={Language === '' && 'activebtn'} onClick={() => setLanguage('')}>All</button>
         {Languages.map((lan) => (
           <button key={lan} onClick={() => setLanguage(lan)} className={Language === lan && "activebtn"}>{lan}</button>
         ))}

@@ -32,10 +32,8 @@ export const Login = async (req, res, next) => {
 
 export const userUpdate = async (req, res, next) => {
     try {
-        const profilePic = 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=600'
-        const { email, username, phone } = req.body.inputs;
         const { userId } = req.params
-        const updateuser = await UserModel.findByIdAndUpdate(userId, { username, email, profilePic }, { new: true });
+        const updateuser = await UserModel.findByIdAndUpdate(userId, req.body, { new: true });
         res.status(200).json(updateuser);
     } catch (error) {
         console.error(error);
