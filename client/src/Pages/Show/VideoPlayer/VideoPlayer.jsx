@@ -1,18 +1,20 @@
 import ReactPlayer from 'react-player';
 import './VideoPlayer.scss';
 import { IoIosArrowRoundBack } from 'react-icons/io';
+import DocTitle from '../../../Components/Title';
 
 const VideoPlayer = ({ onBack, movie }) => {
 
   return (
     <div className="player-wrapper">
+      <DocTitle title={`${movie?.movieTitle}`} />
       <div className="back" onClick={() => onBack(false)}>
         <IoIosArrowRoundBack className="backicon" />
         <span>Back</span>
       </div>
-      {movie?.movieUrl ?
+      {movie?.movieVideo ?
         <ReactPlayer
-          url={movie?.movieUrl}
+          url={movie?.movieVideo}
           className="react-player"
           width="100%"
           height="100%"
@@ -21,7 +23,7 @@ const VideoPlayer = ({ onBack, movie }) => {
         />
         :
         <div className="notavailable">
-          <span>{`"${movie?.title}"`}</span>
+          <span>{`"${movie?.movieTitle}"`}</span>
           <p>This Movie Currently Not Available</p>
         </div>
       }

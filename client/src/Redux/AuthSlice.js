@@ -14,12 +14,16 @@ const AuthSlice = createSlice({
             state.user = null;
             localStorage.removeItem('user');
             localStorage.removeItem('access_token');
-            localStorage.removeItem('search');
         },
         watchedMovies: (state, action) => {
-            state.user.watchedMovies.push(action.payload);
-            localStorage.setItem('user', JSON.stringify(state.user));
+            const movieId = action.payload;
+            const watchedMoviesSet = new Set(state.user.watchedMovies);
+            if (!watchedMoviesSet.has(movieId)) {
+                state.user.watchedMovies.push(movieId);
+                localStorage.setItem('user', JSON.stringify(state.user));
+            }
         }
+
     }
 })
 

@@ -3,7 +3,6 @@
 .profilecon {
     width: 98%;
     min-height: 100vh;
-    padding-left: 100px;
     display: flex;
     flex-direction: column;
     padding-top: 50px;
@@ -23,6 +22,7 @@
         padding: 20px 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         margin-top: 50px;
+        padding-left: 100px;
     }
 
     .proinfo {
@@ -30,8 +30,15 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        padding-left: 100px;
 
-        @include mobile {}
+        @include mobile {
+            padding: 10px;
+            flex-direction: column;
+            width: 100%;
+            align-items: start;
+            gap: 20px;
+        }
 
         .pileft {
             display: flex;
@@ -76,6 +83,12 @@
             font-weight: 700;
             cursor: pointer;
             color: rgba(255, 255, 255, 0.5);
+
+            @include mobile {
+                width: 100%;                
+                flex-direction: row;
+                justify-content: space-between;
+            }
 
             .ed {
                 display: flex;
@@ -140,7 +153,7 @@
 
     @include mobile {
         width: 100%;
-        padding: 10px;        
+        padding: 10px;
     }
 
     h1 {

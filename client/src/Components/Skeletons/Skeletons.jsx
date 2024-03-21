@@ -1,4 +1,4 @@
-import './Skeletons.scss'
+import './Skeletons.scss';
 
 export const InfoSkeleton = () => {
     return (
@@ -15,7 +15,7 @@ export const InfoSkeleton = () => {
                 <div></div> |
                 <div></div> |
                 <div></div> |
-                <div></div> 
+                <div></div>
             </div>
             <div className='skeleton-buttons'>
                 <div className='skeleton-button'></div>
@@ -24,3 +24,16 @@ export const InfoSkeleton = () => {
         </div>
     )
 }
+
+import React from 'react';
+
+export const McardSkeleton = ({ slide, count }) => {
+    return (
+        <div className={`mcardskeletoncon ${slide && "sliderske"}`}>
+            {[...Array(count)].map((_, index) => (
+                <div key={index} className="mcardskeleton"></div>
+            ))}
+        </div>
+    );
+};
+

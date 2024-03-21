@@ -1,0 +1,85 @@
+@import '../../App.scss';
+
+.slidercon {
+    width: calc(100% - 100px);
+    margin-left: 100px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;    
+    min-height: 250px;
+
+    @include mobile {
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+    }
+
+    .slidelaoding{
+        width: 98%;        
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slider {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        position: relative;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        @include mobile {
+            width: 100%;                        
+        }
+
+        @include exlarge {
+            width: 100%;                                    
+        }
+        
+    }
+
+    .slidetop {
+        text-transform: capitalize;
+        width: 100%;
+        padding-right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        .slidertitle {
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .viewalltext {
+            z-index: 1;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+
+            span {
+                margin-left: 10px;
+                font-size: 20px;
+                font-weight: 400;
+            }
+
+            &:hover {
+                color: white;
+            }
+        }
+    }
+
+}

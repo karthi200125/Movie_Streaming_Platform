@@ -2,8 +2,7 @@ import MovieModel from '../Modals/MovieModel.js';
 
 export const CreateMovie = async (req, res, next) => {
     try {
-        const { movieTitle, TitleImg, thumpnailImg, movieVideo, moviePreview, isFree } = req.body;
-        const newMovie = await MovieModel.create({ movieTitle, TitleImg, thumpnailImg, movieVideo, moviePreview, isFree });
+        await MovieModel.create(req.body);
         res.status(200).json({ message: "Movie has been created" });
     } catch (error) {
         console.log(error);

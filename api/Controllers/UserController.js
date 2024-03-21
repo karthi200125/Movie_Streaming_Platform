@@ -1,5 +1,6 @@
 import UserModel from "../Modals/UserModel.js";
 import bcrypt from 'bcryptjs';
+import JWT from 'jsonwebtoken'
 
 export const Register = async (req, res, next) => {
     try {
@@ -18,12 +19,14 @@ export const Register = async (req, res, next) => {
 
 export const Login = async (req, res, next) => {
     try {
-        const { email, password } = req.body.inputs;
+        const { email, password: enteredPassword } = req.body.inputs;
         const user = await UserModel.findOne({ email });
         if (!user) return res.status(404).json({ message: { email: "Wrong email" } });
-        const checkPassword = await bcrypt.compare(password, user.password);
+        const checkPassword = await bcrypt.compare(enteredPassword, user.password);
         if (!checkPassword) return res.status(401).json({ message: { password: "Wrong password" } });
-        res.status(200).json(user);
+        const { password, ...others } = user._doc;
+        const token = JWT.sign({ id: user._id }, process.env.SECRET_KEY_JWT, { expiresIn: '1d' })
+        res.cookie("access_token", token, { httpOnly: true, secure: true, sameSite: 'Lax' }).status(200).json({ ...others, token });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "User login failed" });
@@ -44,10 +47,10 @@ export const userUpdate = async (req, res, next) => {
 export const userWatchedMovies = async (req, res, next) => {
     try {
         const { userId, movieId } = req.body;
-        await UserModel.findByIdAndUpdate(userId, { $push: { watchedMovies: movieId } }, { new: true });
+        await UserModel.findByIdAndUpdate(userId, { $addToSet: { watchedMovies: movieId } }, { new: true });
         res.status(200).json(movieId);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Adding movie to watched list failed" });
     }
-};
+}

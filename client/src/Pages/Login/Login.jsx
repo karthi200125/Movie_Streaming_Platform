@@ -9,6 +9,7 @@ import Toast from '../../Components/Toast/Toast';
 import { login } from '../../Redux/AuthSlice';
 import './Login.scss';
 import AxiosRequest from '../../Utils/Axiosrequest';
+import DocTitle from '../../Components/Title';
 
 const Login = ({ onLogClose, onRegOpen }) => {
     const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const Login = ({ onLogClose, onRegOpen }) => {
             try {
                 setIsLoading(true);
                 const res = await AxiosRequest.post('/auth/login', { inputs });
+                localStorage.setItem('access_token', res?.data?.token)
                 navigate('/');
                 toast(<Toast onErr={false} tmsg={"Login Successfully"} />)
                 dispatch(login(res.data));
@@ -66,6 +68,7 @@ const Login = ({ onLogClose, onRegOpen }) => {
 
     return (
         <div className='register'>
+            <DocTitle title={`₣ƗŁΜ₣ŁØŴ | Login`} />
             <div className="regleftcon">
                 <Image src={loginimg} alt={"login image"} cs="logimg" w={'100%'} h={'410px'} br={'10px'} />
             </div>

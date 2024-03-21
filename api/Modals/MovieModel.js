@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const MovieSchema = new mongoose.Schema({
+const MovieModel = new mongoose.Schema({
     movieTitle: { type: String },
     TitleImg: { type: String },
     thumpnailImg: { type: String },
@@ -9,5 +9,5 @@ const MovieSchema = new mongoose.Schema({
     isFree: { type: Boolean, default: false },
 }, { timestamps: true });
 
-export default MovieModel = mongoose.model("Movie", MovieSchema);
+export default mongoose.model("Movie", MovieModel);
 

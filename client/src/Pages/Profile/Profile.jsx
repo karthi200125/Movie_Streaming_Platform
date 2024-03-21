@@ -3,24 +3,25 @@ import { FiEdit2 } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import Button from '../../Components/Button/Button';
-import Carousel from '../../Components/Carousel/Carousel';
 import Footer from '../../Components/Footer/Footer';
 import Image from "../../Components/Image/Image";
 import Model from "../../Components/Model/Model";
+import Slider from '../../Components/Slider/Slider';
 import Toast from "../../Components/Toast/Toast";
-import { MoviesData } from "../../MoviesData";
 import { login, logout } from "../../Redux/AuthSlice";
 import AxiosRequest from "../../Utils/Axiosrequest";
-import { useUplaod } from "../../Utils/UplaodFile";
+import useGetMovies from "../../Utils/GetAllMovies";
+import { useUpload } from '../../Utils/UplaodFile';
 import './Profile.scss';
+import DocTitle from "../../Components/Title";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 const Profile = () => {
-
-    const user = useSelector((state) => state?.user?.user)
-    const dispatch = useDispatch()
+    const user = useSelector((state) => state?.user?.user);
+    const dispatch = useDispatch();
     const [EditOpen, setEditOpen] = useState(false);
     const [isLoading, setisLoading] = useState(false);
-    const [file, setFile] = useState()
+    const [file, setFile] = useState();
     const [inputs, setInputs] = useState({
         username: user?.username || '',
         email: user?.email || "",
@@ -28,67 +29,76 @@ const Profile = () => {
         phone: "",
     });
 
-    const { per, UploadFile, donwlaodUrl } = useUplaod({ file })
-    useEffect(() => { file && UploadFile() }, [file])
+    const { per, UploadFile, donwlaodUrl } = useUpload({ file });
+    useEffect(() => {
+        if (file) UploadFile();
+    }, [file, UploadFile]);
 
     const handleEditOpen = () => {
         setEditOpen(true);
     };
 
     const handleChnage = (e) => {
-        setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-    }
+        setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    };
 
     const handleUpdate = async () => {
         try {
-            setisLoading(true)
-            const res = await AxiosRequest.put(`/auth/userupdate/${user?._id}`, { ...inputs, profilePic: donwlaodUrl })
-            console.log(res)
-            toast(<Toast onErr={false} tmsg={"user Has Been updated"} />)
-            dispatch(login(res.data))
+            setisLoading(true);
+            const token = localStorage.getItem('access_token')
+            AxiosRequest.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            const res = await AxiosRequest.put(`/auth/userupdate/${user?._id}`, { ...inputs, profilePic: donwlaodUrl });
+            toast(<Toast onErr={false} tmsg={"User has been updated"} />);
+            dispatch(login(res.data));
         } catch (error) {
-            toast(<Toast onErr={true} tmsg={error?.response?.data?.message} />)
-            console.log(error)
+            toast(<Toast onErr={true} tmsg={error?.response?.data?.message} />);
+            console.log(error);
         } finally {
-            setisLoading(false)
+            setisLoading(false);
         }
-    }
+    };
 
     const EditBodey = (
         <div className="editcon">
-            <h1 >Edit Profile</h1>
+            <DocTitle title={`Edit profile | ${user?.username}`} />
+            <h1>Edit Profile</h1>
             <div className="edit">
                 <div className="leftedit">
-                    <Image src={user?.profilePic} alt="" className="editprofileimg" w={'100px'} h={'100px'} br={'50%'} />
+                    <Image src={user?.profilePic} alt={user?.username} cs="editprofileimg" />
                     <input type="file" name="" id="profileimg" style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} />
                     <label htmlFor="profileimg" className="chnageimage glass">
                         Change Image
                     </label>
-                    {per && <div className="per">{per}%  {per > 0 ? "completed" : "uploading...."} </div>}
+                    {per && <ProgressBar completed={per} />}
                 </div>
                 <div className="rightedit">
-                    <label htmlFor="" className="editlabel"> Chnage User Name</label>
-                    <input type="text" name="username" value={inputs?.username} id="" className="regloginput" placeholder="chnage your name" onChange={handleChnage} />
-                    <label htmlFor="" className="editlabel">Chnage Email</label>
-                    <input type="email" name="email" id="" value={inputs?.email} className="regloginput" placeholder="chnage your name" onChange={handleChnage} />
-                    {/* <label htmlFor="" className="editlabel">Chnage Phone</label>
-                    <input type="number" name="phone" id="" value={''} className="regloginput" placeholder="chnage your name" onChange={handleChnage} /> */}
+                    <label htmlFor="" className="editlabel"> Change User Name</label>
+                    <input type="text" name="username" value={inputs?.username} id="" className="regloginput" placeholder="Change your name" onChange={handleChnage} />
+                    <label htmlFor="" className="editlabel">Change Email</label>
+                    <input type="email" name="email" id="" value={inputs?.email} className="regloginput" placeholder="Change your email" onChange={handleChnage} />
                     <Button isloading={isLoading} onClick={handleUpdate} bg w={'100%'}>{isLoading ? "Please wait..." : "Update"}</Button>
                 </div>
             </div>
         </div>
-    )
+    );
 
     const handleLogout = () => {
-        toast(<Toast onErr={false} tmsg={"logout successfully"} />)
-        dispatch(logout())
-    }
+        setEditOpen(false)
+        toast(<Toast onErr={false} tmsg={"Logout successful"} />);
+        dispatch(logout());
+    };
 
-    const userWatchedIds = user?.watchedMovies;
-    const watchedMoviesData = MoviesData.filter(movie => userWatchedIds?.includes(movie.id));
+    const { moviesData, isLoading: dataLoading } = useGetMovies();
+
+    const userWatchedIds = user?.watchedMovies || [];
+    const watchedMoviesData = userWatchedIds
+        .map(id => moviesData.find(movie => String(movie._id) === id))
+        .filter(Boolean)
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     return (
         <>
+            <DocTitle title={`Profile - ${user ? user?.username : "LogIn"}`} />
             {user ?
                 <div className='profilecon'>
                     <Model onOpen={EditOpen} onClose={() => setEditOpen(false)} bodycontent={EditBodey} />
@@ -99,7 +109,7 @@ const Profile = () => {
                     }
                     <div className="proinfo">
                         <div className="pileft">
-                            <Image src={user?.profilePic} alt={user?.username} className='profileimg' w={'100px'} h={'100px'} br={'50%'} />
+                            <Image src={user?.profilePic} alt={user?.username} cs='profileimg' w={'100px'} h={'100px'} br={'50%'} />
                             <div className="profileinfo">
                                 <h1>{user?.username}</h1>
                                 <p>7904653176</p>
@@ -115,7 +125,7 @@ const Profile = () => {
 
                     </div>
                     {user?.watchedMovies?.length > 0 &&
-                        <Carousel CatTitle="Watch History" promovies={watchedMoviesData} />
+                        <Slider sTitle="Watch History" otherMovies={watchedMoviesData} isloading={dataLoading} />
                     }
                     <Footer />
                 </div>
@@ -124,13 +134,13 @@ const Profile = () => {
                     <div className="plcon">
                         <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_384/feature/myspace/my_space_login_in.png" alt="" />
                         <h1>Login to Watch All movies</h1>
-                        <p>start wathcing from where you left , more</p>
+                        <p>Start watching from where you left, and more.</p>
                         <Button bg pad={'20px 80px'}>Login</Button>
                     </div>
                 </div>
             }
         </>
-    )
-}
+    );
+};
 
-export default Profile
+export default Profile;

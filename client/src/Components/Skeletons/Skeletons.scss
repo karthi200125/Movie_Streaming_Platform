@@ -1,3 +1,5 @@
+@import '../../App.scss';
+
 // INFO SKELETON
 .infosk {
     width: 100%;
@@ -74,5 +76,60 @@
             width: 30px;
         }
 
+    }
+}
+
+.mcardskeletoncon,
+.sliderske {
+    width: 100%;
+    display: flex;
+    flex-flow: wrap row;
+    gap: 15px;    
+    position: relative;
+    
+    .mcardskeleton {
+        flex: 0 0 auto;
+        width: 23.5%;
+        height: 200px;
+        border-radius: 5px;
+        background: linear-gradient(to right, #16181f, rgba(255, 255, 255, 0.1), #16181f);
+        background-size: 200% 100%;
+        animation: shine 1.5s linear infinite;
+        position: relative;
+
+        @include mobile {
+            width: 100%;
+            height: 220px;
+        }
+
+        @include tablet {
+            width: 48%;
+        }
+
+        @include exlarge {
+            width: 18.9%;
+            margin: 0 auto;
+        }
+
+    }
+}
+
+.sliderske {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+    position: relative;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@keyframes shine {
+    to {
+        background-position-x: 200%;
     }
 }

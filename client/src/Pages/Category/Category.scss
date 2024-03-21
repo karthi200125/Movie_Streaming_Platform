@@ -16,12 +16,16 @@
         font-size: 30px;
         font-weight: 700;
         text-transform: uppercase;
-        margin-top: 100px;
         margin-left: 100px;
 
         @include mobile {
             font-size: 20px;
             margin-left: 10px;
+            margin-top: 100px !important;
+        }
+
+        @include tablet {
+            margin-top: 100px !important;
         }
     }
 
@@ -32,14 +36,14 @@
         height: max-content;
         display: flex;
         align-items: center;
-        flex-direction: row;        
+        flex-direction: row;
         gap: 10px;
 
         @include mobile {
             margin: 0;
             padding: 10px;
             overflow-x: scroll !important;
-            gap: 5px;            
+            gap: 5px;
         }
 
         &::-webkit-scrollbar {

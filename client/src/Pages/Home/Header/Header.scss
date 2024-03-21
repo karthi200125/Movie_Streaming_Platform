@@ -4,10 +4,11 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;    
-    position: absolute;
+    justify-content: space-between;
+    position: fixed;
     padding: 10px 20px;
     z-index: 2;    
+    background-color: transparent;
 
     @include mobile {
         width: 100%;
@@ -19,13 +20,11 @@
         align-items: center;
         flex-direction: column;
         gap: 5px;
-        position: relative;        
+        position: relative;
         cursor: pointer;
         text-decoration: none;
         color: white;
-        margin-left: 10px;
-
-        @include mobile {}
+        // margin-left: 10px;
 
         &:hover {
             opacity: 0.5;
@@ -44,13 +43,22 @@
             background: linear-gradient(to right, #f3e96f, #947303, #ceb349);
             border-radius: 25px;
             font-size: 10px;
-            
+
         }
 
         .logotext {
             position: absolute;
             right: -100px;
-            top: 20px;            
+            top: 20px;
+        }
+
+        .logonname {
+            font-size: 12px;
+            // font-weight: 700;
+            background: linear-gradient(to right, #68c1af, #80c745, #fffd00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
     }
 
@@ -58,7 +66,7 @@
         display: flex;
         flex-direction: row;
         gap: 20px;
-        align-items: center;
+        align-items: center;        
 
         @include mobile {
             gap: 10px;

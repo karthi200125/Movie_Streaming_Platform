@@ -1,13 +1,17 @@
-import express from 'express';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import AuthRoutes from './Routes/UserRoute.js';
+import dotenv from 'dotenv';
+import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv'
+import MovieRoutes from './Routes/MovieRoutes.js';
+import AuthRoutes from './Routes/UserRoute.js';
+import { NextError } from './Utils/NextError.js';
 dotenv.config()
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
 // Mongodb connection
 mongoose.connect(process.env.MONGO_DB_URL)
@@ -16,6 +20,9 @@ mongoose.connect(process.env.MONGO_DB_URL)
 
 // Routes
 app.use('/api/auth', AuthRoutes);
+app.use('/api/movie', MovieRoutes);
+
+app.use(NextError)
 
 const PORT = process.env.PORT || 8800;
 app.listen(PORT, () => {

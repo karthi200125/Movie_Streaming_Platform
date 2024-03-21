@@ -6,6 +6,7 @@ import Image from '../../Components/Image/Image';
 import Toast from '../../Components/Toast/Toast';
 import './Register.scss';
 import AxiosRequest from '../../Utils/Axiosrequest';
+import DocTitle from '../../Components/Title';
 
 const Register = ({ onRegClose, onLogOpen }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -67,6 +68,7 @@ const Register = ({ onRegClose, onLogOpen }) => {
 
     return (
         <div className='register'>
+            <DocTitle title={`₣ƗŁΜ₣ŁØŴ | Signup`} />
             <div className="regleftcon rs">
                 <Image src={loginimg} alt="login image" cs="logimg" w="100%" h="430px" br="10px" />
             </div>

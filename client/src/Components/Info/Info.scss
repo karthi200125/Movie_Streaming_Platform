@@ -16,8 +16,8 @@
 
     .movietitleimg {
         max-width: 300px;
-        max-height: 100px;
-        object-fit: fill;
+        height: 120px;                
+        object-fit: contain;
         font-size: 40px;
         font-weight: 700;
         text-align: center;

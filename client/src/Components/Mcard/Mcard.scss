@@ -1,0 +1,109 @@
+@import '../../App.scss';
+
+.mcardcon {
+    flex: 0 0 auto;
+    width: 23.5%;
+    height: 200px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    text-decoration: none;
+    color: inherit;
+
+    @include mobile {
+        width: 100%;
+        height: 220px;
+    }
+
+    @include tablet {
+        width: 48%;
+    }
+
+    @include exlarge {
+        width: 18.9%;        
+    }
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    .mcardgenres {
+        position: absolute;
+        width: 80%;
+        left: 20%;
+        bottom: 5px;
+        height: max-content;
+        font-size: 10px;
+        overflow: hidden;
+        display: flex;
+        gap: 5px;
+        flex-flow: wrap row;
+        text-transform: capitalize;
+
+        .mcardgenre {
+            padding: 1px 5px;
+            border-radius: 5px;
+            background: var(--btn_blue);
+        }
+    }
+
+    .circlerating {
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        width: 45px;
+        height: 45px;
+        background-color: white;
+        border-radius: 50%;
+        padding: 2px;
+
+        .CircularProgressbar-text {
+            font-size: 34px;
+            font-weight: 700;
+            fill: black;
+        }
+
+        .CircularProgressbar-trail {
+            stroke: transparent;
+        }
+    }
+
+
+    .mcardvideocon {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;            
+        }
+    }
+
+    .free,
+    .sub {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        padding: 5px 10px;
+        background: var(--btn_blue);
+        color: white;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 700;
+    }
+
+    .sub {
+        background: linear-gradient(to right, #f3e96f, #947303, #ceb349);
+    }
+}

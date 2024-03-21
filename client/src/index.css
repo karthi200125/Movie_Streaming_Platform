@@ -7,13 +7,10 @@
 body {
   width: 100%;
   overflow-x: hidden;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
 }
 
 button {
   background-color: transparent;
   border: none;
-  cursor: pointer;  
+  cursor: pointer;
 }

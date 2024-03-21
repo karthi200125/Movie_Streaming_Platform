@@ -1,12 +1,12 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import logo from '../../../Assets/logo.png';
 import Button from '../../../Components/Button/Button';
 import Model from '../../../Components/Model/Model';
 import Login from '../../Login/Login';
 import Register from '../../Register/Register';
 import './Header.scss';
-import { useSelector } from 'react-redux';
-import logo from '../../../Assets/logo.png'
-import { Link } from 'react-router-dom'
 
 const Header = () => {
     const [regOpen, setRegOpen] = useState(false);
@@ -20,12 +20,12 @@ const Header = () => {
     const handleLoginOpen = () => {
         setLoginOpen(true);
     };
-
+    
     return (
         <div className='headerlog'>
             <Link to={'/'} className="logo">
                 <img src={logo} alt="" className='logoimg' />
-                {user?.isSub && <h1 className='premium'>Pro</h1>}                
+                <div className="logonname">₣ƗŁΜ₣ŁØŴ</div>                
             </Link>
             {!user &&
                 <div className="ri">

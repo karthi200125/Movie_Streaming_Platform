@@ -2,21 +2,24 @@
 
 .searchcon {
     width: 100%;
-    min-height: 100vh;
-    padding-top: 100px;
+    min-height: 100vh;    
     display: flex;
-    flex-direction: column;
-    gap: 50px;
+    flex-direction: column;    
 
     .searchboxcon {
         width: 100%;
         padding-left: 100px;
-        margin-bottom: 50px;
+        margin-bottom: 50px;        
 
         @include mobile {
             width: 100%;
             padding: 10px;
-            margin-bottom: 0px;
+            margin-bottom: 0px;            
+            margin-top: 80px;
+        }
+
+        @include tablet{            
+            margin-top: 80px;
         }
 
         .search {
