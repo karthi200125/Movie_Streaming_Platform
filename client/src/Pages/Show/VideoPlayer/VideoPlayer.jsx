@@ -12,6 +12,11 @@ const VideoPlayer = ({ onBack, movie }) => {
         <IoIosArrowRoundBack className="backicon" />
         <span>Back</span>
       </div>
+
+      <div className="cutom-controls">
+        
+      </div>
+
       {movie?.movieVideo ?
         <ReactPlayer
           url={movie?.movieVideo}
@@ -20,6 +25,7 @@ const VideoPlayer = ({ onBack, movie }) => {
           height="100%"
           controls={true}
           volume={true}
+          playing={true}
         />
         :
         <div className="notavailable">
