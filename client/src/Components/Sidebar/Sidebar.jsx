@@ -19,7 +19,6 @@ const Sidebar = () => {
         <Link to={'/profile'} className={`${user?.isSub && "prouser"} route ${pathname === "/profile" && "activeroute"} `}>
           {user?.profilePic || user?.profilePic === 'undefined' ?
             <Image src={user?.profilePic} alt={''} cs="usericon" />
-            // <img src={user?.profilePic} alt={user?.username} className="usericon" />
             :
             <CgProfile size={25} className={`routeicon  ${pathname === "/profile" && "activerouteicon"}`} />
           }

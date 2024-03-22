@@ -5,6 +5,7 @@ import './App.scss';
 import PageLoading from './Components/PageLoading/PageLoading';
 import Toast from './Components/Toast/Toast';
 import DashBoard from './Pages/DashBoard/DashBoard';
+import MobNav from './Components/MobNav/MobNav';
 const Sidebar = lazy(() => import('./Components/Sidebar/Sidebar'));
 const Category = lazy(() => import('./Pages/Category/Category'));
 const Header = lazy(() => import('./Pages/Home/Header/Header'));
@@ -28,6 +29,7 @@ const App = () => {
         <Suspense fallback={<PageLoading />}>
           <Sidebar />
           <Header />
+          <MobNav />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/profile' element={<Profile />} />

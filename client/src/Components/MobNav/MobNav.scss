@@ -1,0 +1,39 @@
+.mobnavcon {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    background-color: #0f1014;
+    left: 0;
+    opacity: 0;
+    z-index: 10;
+}
+
+@media screen and (max-width:480px) {
+    .mobnavcon {
+        opacity: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 15px;
+
+        .mobnav {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            cursor: pointer;            
+        }
+
+        .activemobnav {
+            color: white;            
+            background: linear-gradient(to right, #0956e0, #062c9b);            
+        }
+    }
+
+}
