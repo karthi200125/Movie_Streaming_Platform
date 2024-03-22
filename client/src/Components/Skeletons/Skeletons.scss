@@ -83,7 +83,7 @@
 .sliderske {
     width: 100%;
     display: flex;
-    flex-flow: wrap row;
+    flex-direction: row;    
     gap: 15px;    
     position: relative;
     
