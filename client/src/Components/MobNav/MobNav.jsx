@@ -1,41 +1,36 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import './MobNav.scss'
-import { CgProfile } from 'react-icons/cg'
-import { LuSearch } from 'react-icons/lu'
-import { GoHomeFill } from 'react-icons/go'
 import { BsFillGrid1X2Fill } from 'react-icons/bs'
-import { IoIosLogOut } from "react-icons/io";
-import { useDispatch } from 'react-redux'
+import { CgProfile } from 'react-icons/cg'
+import { GoHomeFill } from 'react-icons/go'
+import { IoIosLogOut } from "react-icons/io"
+import { LuSearch } from 'react-icons/lu'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { logout } from '../../Redux/AuthSlice'
+import './MobNav.scss'
 
 const MobNav = () => {
 
+    const user = useSelector((state) => state.user.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const hanldeLogout = () => {
+    const handleLogout = () => {
         dispatch(logout())
         navigate('/')
     }
-
-    const mobnavitems = [
-        { name: "Profile", href: '/profile', icon: <CgProfile size={20} /> },
-        { name: "Search", href: '/search', icon: <LuSearch size={20} /> },
-        { name: "Home", href: '/', icon: <GoHomeFill size={20} /> },
-        { name: "Category", href: '/category', icon: <BsFillGrid1X2Fill size={15} /> },
-        { name: "Logout", href: '', icon: <IoIosLogOut size={20} onClick={hanldeLogout} /> },
-    ]
 
     const location = useLocation()
     const pathname = location.pathname
 
     return (
         <div className='mobnavcon'>
-            {mobnavitems.map((mnav, i) => (
-                <Link to={mnav.href} key={i} className={`mobnav ${pathname === mnav.href && "activemobnav"}`}>
-                    {mnav.icon}
-                </Link>
-            ))}
+            <Link to={'/'} className={`mobnav ${pathname === '/' && "activemobnav"}`}><GoHomeFill size={20} /></Link>
+            <Link to={'/search'} className={`mobnav ${pathname === '/search' && "activemobnav"}`}><LuSearch size={20} /></Link>
+            <Link to={'/profile'} className={`mobnav ${pathname === '/profile' && "activemobnav"}`}><CgProfile size={20} /></Link>
+            <Link to={'/category'} className={`mobnav ${pathname === '/category' && "activemobnav"}`}><BsFillGrid1X2Fill size={15} /></Link>
+            {user &&
+                <Link to={'/'} className={`mobnav`}><IoIosLogOut size={20} onClick={handleLogout} /></Link>
+            }
         </div>
     )
 }
