@@ -14,7 +14,8 @@ app.use(cors());
 app.use(cookieParser());
 
 // Mongodb connection
-mongoose.connect(process.env.MONGO_DB_URL)
+// mongoose.connect(process.env.MONGO_DB_URL)
+mongoose.connect('mongodb+srv://skarthikeyan25052001:BifiKOeIhQOGFY2x@cluster0.wecsqqw.mongodb.net/myDatabase?retryWrites=true&w=majority')
     .then(() => console.log("MongoDB connected"))
     .catch((err) => console.error("MongoDB connection failed:", err));
 

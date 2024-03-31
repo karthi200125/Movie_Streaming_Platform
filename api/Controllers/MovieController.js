@@ -32,8 +32,8 @@ export const UpdateMovie = async (req, res, next) => {
     }
 };
 
-export const GetMovies = async (req, res, next) => {
-    try {
+export const GetMovies = async (req, res, next) => {    
+    try {        
         const movies = await MovieModel.find();
         res.status(200).json(movies);
     } catch (error) {

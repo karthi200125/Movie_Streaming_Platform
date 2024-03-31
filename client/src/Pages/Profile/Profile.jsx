@@ -104,7 +104,7 @@ const Profile = () => {
                     <Model onOpen={EditOpen} onClose={() => setEditOpen(false)} bodycontent={EditBodey} />
                     {user &&
                         <div className="protop">
-                            <Button bg="linear-gradient(to right, #f3e96f, #947303, #ceb349)">{user?.isSub ? "Cancel Subscription" : "Upgrade Subscription"}</Button>
+                            <Button bg={user?.isSub ? "" : "linear-gradient(to right, #f3e96f, #947303, #ceb349)"}>{user?.isSub ? "Cancel Subscription" : "Upgrade Subscription"}</Button>
                         </div>
                     }
                     <div className="proinfo">
